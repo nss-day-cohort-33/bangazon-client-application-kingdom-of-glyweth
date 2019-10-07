@@ -32,6 +32,10 @@ const NavBar = props => {
                 </Dropdown>
 
                 <Menu.Item as={Link} to="/" >
+                    Cart
+                </Menu.Item>
+
+                <Menu.Item as={Link} to="/" >
                     Logout
                 </Menu.Item>
             </Container>
