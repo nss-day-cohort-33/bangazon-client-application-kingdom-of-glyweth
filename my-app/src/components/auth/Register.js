@@ -10,7 +10,7 @@ const Register = props => {
     const lastName = useRef()
     const password = useRef()
     const firstName = useRef()
-    const familyMembers = useRef()
+    const city = useRef()
     const verifyPassword = useRef()
     const address = useRef()
     const phoneNumber = useRef()
@@ -23,10 +23,10 @@ const Register = props => {
             "username": userName.current.value,
             "first_name": firstName.current.value,
             "last_name": lastName.current.value,
-            "address": familyMembers.current.value,
             "email": email.current.value,
             "address": address.current.value,
-            "phoneNumber": phoneNumber.current.value,
+            "city": city.current.value,
+            "phone_number": phoneNumber.current.value,
             "password": password.current.value
         }
 
@@ -76,15 +76,23 @@ const Register = props => {
                 <fieldset>
                     <label htmlFor="inputAddress">Address </label>
                     <input ref={address} type="text"
-                        name="inputAddress"
+                        name="address"
                         className="form-control"
                         placeholder="Address"
                         required />
                 </fieldset>
                 <fieldset>
+                    <label htmlFor="inputCity">City </label>
+                    <input ref={city} type="text"
+                        name="city"
+                        className="form-control"
+                        placeholder="City"
+                        required />
+                </fieldset>
+                <fieldset>
                     <label htmlFor="inputPhone">Phone Number </label>
                     <input ref={phoneNumber} type="text"
-                        name="inputPhone"
+                        name="phone_number"
                         className="form-control"
                         placeholder="Phone Number"
                         required />
