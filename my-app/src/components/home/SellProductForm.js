@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
-import "semantic-ui-css/semantic.min.css";
-import { Form, Button, Grid } from "semantic-ui-react";
+import React, { useEffect, useState, useRef } from "react";
 
 // TODO:
 // - Connect form to a Post call from home page?
 // - Category dropdown needs to populate from product category passed down through props? Or maybe that needs to be a call right here in products
-//FIGURE OUT TOKEN
-//authorization?
+//Create alert for category
 
 const SellProductForm = props => {
-    // const [itineraryList, setCategoryList] = useState([])
+  const title = useRef()
+  const price = useRef()
+  const qty = useRef()
+  const category = useRef()
+  const description = useRef()
 
     // const getItems = () => {
     //     // Fetch the data from localhost:8000/itineraryitems
@@ -17,7 +18,7 @@ const SellProductForm = props => {
     //         "method": "GET",
     //         "headers": {
     //             "Accept": "application/json",
-    //             // "Authorization": `Token ${localStorage.getItem("kennywood_token")}`
+    //             // "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
     //         }
     //     })
     //         // Convert to JSON
@@ -30,42 +31,59 @@ const SellProductForm = props => {
     // }
 
   return (
-    <Grid textAlign="center" verticalAlign="middle">
-      <Grid.Column style={{ maxWidth: 600 }}>
-        <h1>Sell A Product</h1>
+    <>
+    <div align = "center">
+    <main style={{ textalign: "center", width: 700 }} >
+      <h1>Sell A Product</h1>
 
-        <Form>
+      <form className="form--sellProduct">
+      <fieldset>
+        <label htmlFor="title"> Title </label>
+          <input ref={title} type="text"
+            name="title"
+            className="form-control"
+            placeholder="Title"
+            required autoFocus />
+        <label htmlFor="Price"> Price </label>
+          <input ref={price} type="text"
+            name="price"
+            className="form-control"
+            placeholder="Price"
+            required autoFocus />
+        <label htmlFor="qty"> Qty </label>
+          <input ref={qty} type="text"
+            name="qty"
+            className="form-control"
+            placeholder="Qty"
+            required autoFocus />
+      </fieldset>
 
-          <Form.Group widths="equal">
-            <Form.Input fluid label="Title" placeholder="Title" />
-            <Form.Input fluid label="Price" placeholder="Price" />
-            <Form.Input fluid label="qty" placeholder="25" />
-          </Form.Group>
+      <fieldset>
+        <label>Category *</label>
+        <select ref={category} className="form-control" name="category" placeholder="Category" required />
+      </fieldset>
 
-          <Form.Group inline>
-            <label>Category *</label>
-            <Form.Select fluid placeholder="Category" required />
-          </Form.Group>
+      <fieldset>
+      <label>Description</label>
+      <br/>
+      <br/>
+        <textarea ref={description}
+          name="description"
+          className="form-control"
+          placeholder="Tell us about this product..."
+          rows="4" cols="50"
+          autoFocus />
+      </fieldset>
 
-          <Form.TextArea
-            label="Description"
-            placeholder="Tell us more about your product..."
-          />
-
-          <Form.Group>
-            <Form.Button
-              content="Choose File"
-              labelPosition="left"
-              icon="file"
-            />
-            <Form.Input />
-          </Form.Group>
-
-          <Form.Button>Submit</Form.Button>
-        </Form>
-
-      </Grid.Column>
-    </Grid>
+      <fieldset>
+        <button type="submit">
+            Sell
+        </button>
+      </fieldset>
+      </form>
+    </main>
+    </div>
+    </>
   );
 };
 
