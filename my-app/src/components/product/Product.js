@@ -12,7 +12,7 @@ const Product = props => {
               {props.product.name}
             </Link>
           </li>
-          <li>{props.product.price}</li>
+          <li>${props.product.price}</li>
           <li>{props.product.description}</li>
         </ul>
       </section>
