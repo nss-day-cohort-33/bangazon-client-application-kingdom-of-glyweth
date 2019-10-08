@@ -7,6 +7,7 @@ import Login from "./auth/Login";
 import Blank from "./blank";
 
 const ApplicationViews = () => {
+  
   return (
     <>
       <Route
