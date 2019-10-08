@@ -1,9 +1,9 @@
-// Unnaltered Authorization
+// Unaltered Authorization
 // From Saturday In The Park
 
 import { useState } from "react";
 
-const userSimpleAuth = () => {
+const useSimpleAuth = () => {
   const [loggedIn, setIsLoggedIn] = useState(false);
 
   const isAuthenticated = () =>
@@ -53,4 +53,4 @@ const userSimpleAuth = () => {
   return { isAuthenticated, logout, login, register };
 };
 
-export default userSimpleAuth;
+export default useSimpleAuth;

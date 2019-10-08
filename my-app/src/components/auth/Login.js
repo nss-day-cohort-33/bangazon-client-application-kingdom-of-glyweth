@@ -1,14 +1,14 @@
 import React, { useRef } from "react"
 import "./Login.css"
 import { Link } from "react-router-dom"
-import userSimpleAuth from "../../hooks/ui/userSimpleAuth"
+import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 import { Form, Label, Input, Button } from "semantic-ui-react"
 
 
 const Login = props => {
     const username = useRef()
     const password = useRef()
-    const { login } = userSimpleAuth()
+    const { login } = useSimpleAuth()
 
     // Simplistic handler for login submit
     const handleLogin = (e) => {
@@ -53,9 +53,9 @@ const Login = props => {
                         required />
                 </Form.Field>
                 <Form.Field>
-                    <Button onClick={handleLogin}>
+                    {/* <Button onClick={handleLogin}>
                         Sign in
-                    </Button>
+                    </Button> */}
                 </Form.Field>
                 <Form.Field>
                 Not a Member? <Link to="/register">Register Here</Link>

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ProductList from "./ProductList";
-import userSimpleAuth from "../../hooks/ui/userSimpleAuth";
+import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 
 const HomePage = props => {
   const [products, setProducts] = useState([]);
-  const { isAuthenticated } = userSimpleAuth();
+  const { isAuthenticated } = useSimpleAuth();
 
   const getProducts = () => {
     if (isAuthenticated()) {
@@ -19,18 +19,18 @@ const HomePage = props => {
         .then(allProducts => {
           setProducts(allProducts);
         });
-      }
     }
-
-    useEffect(getProducts, []);
-
-    return (
-      <>
-        <main>
-          <ProductList products={products} {...props} />
-        </main>
-      </>
-    );
   };
+
+  useEffect(getProducts, []);
+
+  return (
+    <>
+      <main>
+        <ProductList products={products} {...props} />
+      </main>
+    </>
+  );
+};
 
 export default HomePage;

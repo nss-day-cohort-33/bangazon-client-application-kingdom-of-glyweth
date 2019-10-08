@@ -11,9 +11,6 @@ const Product = props => {
           <li>{props.product.price}</li>
           <li>{props.product.description}</li>
           <li>
-            <a>See More Products Like This</a>
-          </li>
-          <li>
             <img src={props.product.image}></img>
           </li>
         </ul>

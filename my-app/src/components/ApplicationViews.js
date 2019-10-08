@@ -28,14 +28,13 @@ const ApplicationViews = () => {
           return <Login {...props} />;
         }}
       />
-      <Route
+      {/* <Route
         exact
         path="/"
         render={props => {
           return <Blank {...props} />;
         }}
-      />
-      '
+      /> */}
     </>
   );
 };
