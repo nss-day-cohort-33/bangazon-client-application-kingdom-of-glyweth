@@ -22,6 +22,7 @@ const Login = props => {
             "password": password.current.value
         }
 
+        console.log(credentials)
         login(credentials)
             .then(() => {
                 props.history.push({
@@ -35,15 +36,17 @@ const Login = props => {
             <Form className="form--login">
                 <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
                 <Form.Field>
-                    <Label htmlFor="inputEmail"> Email address </Label>
-                    <Input ref={username} type="username"
+                    <Label htmlFor="username"> Username </Label>
+                    <input ref={username} type="text"
+                        name="username"
                         className="form-control"
-                        placeholder="Email address"
+                        placeholder="Username"
                         required autoFocus />
                 </Form.Field>
                 <Form.Field>
                     <Label htmlFor="inputPassword"> Password </Label>
-                    <Input ref={password} type="password"
+                    <input ref={password} type="password"
+                        name="password"
                         id="password"
                         className="form-control"
                         placeholder="Password"
