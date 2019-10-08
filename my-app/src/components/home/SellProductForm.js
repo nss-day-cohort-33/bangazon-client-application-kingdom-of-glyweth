@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 
 // TODO:
 // - Connect form to a Post call from home page?
-// - Category dropdown needs to populate from product category passed down through props? Or maybe that needs to be a call right here in products
 //Create alert for category
 
 const SellProductForm = props => {
@@ -60,7 +59,15 @@ const SellProductForm = props => {
 
       <fieldset>
         <label>Category *</label>
-        <select ref={category} className="form-control" name="category" placeholder="Category" required />
+        <select ref={category} className="form-control" name="category" placeholder="Category" required >
+          {
+          props.product_categories.map((category) => {
+            return <>
+              <option value={category.name} >{category.name}</option>
+            </>
+            })
+          }
+        </select>
       </fieldset>
 
       <fieldset>

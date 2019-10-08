@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 import { withRouter, Route } from "react-router-dom"
 import Login from "./auth/Login"
 import Register from "./auth/Register"
-import Blank from "./blank"
 import useSimpleAuth from "../hooks/ui/userSimpleAuth"
 import SellProductForm from "./home/SellProductForm"
 import Product from "./product/ProductDetail"
@@ -33,12 +32,6 @@ const ApplicationViews = () => {
                 return <Login {...props} />
             }}
         />
-
-        <Route
-            exact path="/" render={props => {
-                return <Blank {...props} />
-            }}
-        />'
         <Route
             path="/register"
             render={props => {
@@ -59,7 +52,7 @@ const ApplicationViews = () => {
           />
         <Route path="/sellproducts" render={props => {
             if(isAuthenticated()){
-              return <SellProductForm {...props} />
+              return <SellProductForm product_categories={product_categories} {...props} />
             }
             else {
               return <Login {...props} />
