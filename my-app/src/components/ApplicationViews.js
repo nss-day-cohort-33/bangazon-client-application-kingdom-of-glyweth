@@ -1,7 +1,7 @@
-import { Route } from "react-router-dom"
 import React from "react"
-import { withRouter } from "react-router-dom"
+import { withRouter, Route } from "react-router-dom"
 import Login from "./auth/Login"
+import Register from "./auth/Register"
 import Blank from "./blank"
 
 const ApplicationViews = () => {
@@ -17,6 +17,12 @@ const ApplicationViews = () => {
             <Route
                 exact path="/" render={props => {
                     return <Blank {...props} />
+                }}
+            />'
+            <Route
+                path="/register"
+                render={props => {
+                return <Register {...props} />
                 }}
             />
       </React.Fragment>

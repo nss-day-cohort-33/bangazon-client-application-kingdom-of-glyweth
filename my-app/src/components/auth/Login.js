@@ -1,5 +1,6 @@
 import React, { useRef } from "react"
 import "./Login.css"
+import { Link } from "react-router-dom"
 import userSimpleAuth from "../../hooks/ui/userSimpleAuth"
 import { Form, Label, Input, Button } from "semantic-ui-react"
 
@@ -55,6 +56,9 @@ const Login = props => {
                     <Button onClick={handleLogin}>
                         Sign in
                     </Button>
+                </Form.Field>
+                <Form.Field>
+                Not a Member? <Link to="/register">Register Here</Link>
                 </Form.Field>
             </Form>
         </main>
