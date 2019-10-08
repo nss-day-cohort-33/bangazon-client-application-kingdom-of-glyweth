@@ -7,6 +7,7 @@ const Product = props => {
     // users will be clicking links throughout the app that can direct them to this detail page
     //What's the route of each link? "/products/1" or "/products/3", etc.
     // I'll mock up the call and get back to it when the boys have sorted the user questions.
+
         return (
             <>
                 <section className="productDetail" id="{props.product.id}">
