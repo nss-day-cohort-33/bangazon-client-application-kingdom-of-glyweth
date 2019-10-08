@@ -6,6 +6,7 @@ import useSimpleAuth from "../hooks/ui/userSimpleAuth"
 import SellProductForm from "./home/SellProductForm"
 import Product from "./product/ProductDetail"
 import APImanager from "../modules/APImanager"
+import HomePage from "./homePage/HomePage";
 
 const ApplicationViews = () => {
   const [products, setProducts] = useState([])
@@ -13,9 +14,8 @@ const ApplicationViews = () => {
   const { isAuthenticated } = useSimpleAuth()
 
   const getProducts = () => {
-    APImanager.getAll("products")
-    .then(setProducts)
-  }
+    APImanager.getAll("products").then(setProducts);
+  };
   const getProductCategories = () => {
     APImanager.getAll("product_category")
     .then(setProductCategories)
@@ -23,13 +23,21 @@ const ApplicationViews = () => {
   const addProduct = (newProduct) => {
     APImanager.post("product", newProduct)
   }
+ 
   useEffect(() => {
-    getProducts()
-    getProductCategories()
-  }, [])
+    getProducts();
+    getProductCategories();
+  }, []);
 
     return (
       <React.Fragment>
+        <Route
+        exact
+        path="/"
+        render={props => {
+          return <HomePage products={products} {...props} />;
+        }}
+        />
         <Route
             path="/login" render={props => {
                 return <Login {...props} />
@@ -67,4 +75,4 @@ const ApplicationViews = () => {
     )
 }
 
-export default withRouter(ApplicationViews)
+export default withRouter(ApplicationViews);
