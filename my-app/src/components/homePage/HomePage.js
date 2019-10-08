@@ -19,7 +19,7 @@ const HomePage = props => {
         .then(allProducts => {
           setProducts(allProducts);
         });
-      // }
+      }
     }
 
     useEffect(getProducts, []);
@@ -32,6 +32,5 @@ const HomePage = props => {
       </>
     );
   };
-};
 
 export default HomePage;
