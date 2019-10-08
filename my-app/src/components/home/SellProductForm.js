@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 // TODO:
 // - Connect form to a Post call from home page?
 //Create alert for category
+//restrict characters in description to ???
 
 const SellProductForm = props => {
   const title = useRef()
@@ -11,23 +12,28 @@ const SellProductForm = props => {
   const category = useRef()
   const description = useRef()
 
-    // const getItems = () => {
-    //     // Fetch the data from localhost:8000/itineraryitems
-    //     fetch("http://localhost:8000/product_category", {
-    //         "method": "GET",
-    //         "headers": {
-    //             "Accept": "application/json",
-    //             // "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
-    //         }
-    //     })
-    //         // Convert to JSON
-    //         .then(response => response.json())
+  const handlePostProduct = (e) => {
+    e.preventDefault() 
 
-    //         // Store itinerary items in state variable
-    //         .then((allTheItems) => {
-    //             setCategoryList(allTheItems)
-    //         })
-    // }
+    const newProduct = {
+      "name": title.current.value,
+      "price": price.current.value,
+      "quantity_available": qty.current.value,
+      "product_category_id": category.current.value,
+      "description": description.current.value
+      }
+      if(newProduct.product_category_id = "nope"){
+        window.confirm("Please Choose A Category!")
+      }
+      else{
+        console.log(newProduct)
+        // props.addProduct(newProduct).then(() => {
+        //   props.history.push({
+        //       pathname: "/"
+        //   })
+        // })
+      }
+    }
 
   return (
     <>
@@ -35,7 +41,7 @@ const SellProductForm = props => {
     <main style={{ textalign: "center", width: 700 }} >
       <h1>Sell A Product</h1>
 
-      <form className="form--sellProduct">
+      <form className="form--sellProduct" onSubmit={handlePostProduct}>
       <fieldset>
         <label htmlFor="title"> Title </label>
           <input ref={title} type="text"
@@ -60,10 +66,11 @@ const SellProductForm = props => {
       <fieldset>
         <label>Category *</label>
         <select ref={category} className="form-control" name="category" placeholder="Category" required >
+          <option value={"nope"} >Please Choose Category</option>
           {
           props.product_categories.map((category) => {
             return <>
-              <option value={category.name} >{category.name}</option>
+              <option value={category.id} >{category.name}</option>
             </>
             })
           }

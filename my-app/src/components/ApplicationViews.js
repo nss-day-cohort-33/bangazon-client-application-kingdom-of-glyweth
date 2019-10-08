@@ -20,6 +20,9 @@ const ApplicationViews = () => {
     APImanager.getAll("product_category")
     .then(setProductCategories)
   }
+  const addProduct = (newProduct) => {
+    APImanager.post("product", newProduct)
+  }
   useEffect(() => {
     getProducts()
     getProductCategories()
