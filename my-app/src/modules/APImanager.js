@@ -1,9 +1,9 @@
-const remoteURL = "http://localhost:3000"
+const remoteURL = "http://localhost:8000"
 
 export default {
-    get(id) {
+    get(resource, id) {
         // if isAuthenticated() {
-      return fetch(`${remoteURL}/resource/${id}`, {
+      return fetch(`${remoteURL}/${resource}/${id}`, {
           "method": "GET",
           "headers": {
               "Accept": "application/json",
