@@ -1,12 +1,12 @@
 import { Route } from "react-router-dom";
 import React from "react";
-import HomePage from "./homePage/HomePage"
+import HomePage from "./homePage/HomePage";
 import { withRouter } from "react-router-dom";
+import Register from "./auth/Register";
 
 const ApplicationViews = () => {
   return (
-    // <h1>YoYo!</h1>
-    <React.Fragment>
+    <>
       <Route
         exact
         path="/"
@@ -14,7 +14,13 @@ const ApplicationViews = () => {
           return <HomePage {...props} />;
         }}
       />
-    </React.Fragment>
+      <Route
+        path="/register"
+        render={props => {
+          return <Register {...props} />;
+        }}
+      />
+    </>
   );
 };
 

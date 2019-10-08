@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ProductList from "./ProductList";
-// import userSimpleAuth from "../../hooks/ui/userSimpleAuth";
+import userSimpleAuth from "../../hooks/ui/userSimpleAuth";
 
 const HomePage = props => {
   const [products, setProducts] = useState([]);
-  // const { isAuthenticated } = userSimpleAuth();
+  const { isAuthenticated } = userSimpleAuth();
 
   const getProducts = () => {
-    // if (isAuthenticated()) {
+    if (isAuthenticated()) {
       fetch(`http://localhost:8000/products`, {
         method: "GET",
         headers: {
@@ -19,18 +19,19 @@ const HomePage = props => {
         .then(allProducts => {
           setProducts(allProducts);
         });
-    // }
+      // }
+    }
+
+    useEffect(getProducts, []);
+
+    return (
+      <>
+        <main>
+          <ProductList products={products} {...props} />
+        </main>
+      </>
+    );
   };
-
-  useEffect(getProducts, []);
-
-  return (
-    <>
-      <main>
-        <ProductList products={products} {...props} />
-      </main>
-    </>
-  );
 };
 
 export default HomePage;

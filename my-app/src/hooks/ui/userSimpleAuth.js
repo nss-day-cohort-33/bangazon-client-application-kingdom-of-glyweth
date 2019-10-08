@@ -1,4 +1,4 @@
-// Unnaltered Authorization 
+// Unnaltered Authorization
 // From Saturday In The Park
 
 import { useState } from "react"
@@ -8,7 +8,7 @@ const userSimpleAuth = () => {
     const [loggedIn, setIsLoggedIn] = useState(false)
 
     const isAuthenticated = () =>
-        loggedIn || localStorage.getItem("kennywood_token") !== null
+        loggedIn || localStorage.getItem("bangazon_token") !== null
 
     const register = userInfo => {
         return fetch("http://127.0.0.1:8000/register", {
@@ -22,7 +22,7 @@ const userSimpleAuth = () => {
             .then(res => res.json())
             .then(res => {
                 if ("token" in res) {
-                    localStorage.setItem( "kennywood_token", res.token )
+                    localStorage.setItem( "bangazon_token", res.token )
                     setIsLoggedIn(true)
                 }
             })
@@ -40,7 +40,7 @@ const userSimpleAuth = () => {
             .then(res => res.json())
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
-                    localStorage.setItem( "kennywood_token", res.token )
+                    localStorage.setItem( "bangazon_token", res.token )
                     setIsLoggedIn(true)
                 }
             })
@@ -48,7 +48,7 @@ const userSimpleAuth = () => {
 
     const logout = () => {
         setIsLoggedIn(false)
-        localStorage.removeItem("kennywood_token")
+        localStorage.removeItem("bangazon_token")
     }
 
     return { isAuthenticated, logout, login, register }
