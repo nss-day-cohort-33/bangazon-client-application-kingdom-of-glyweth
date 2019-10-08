@@ -3,11 +3,12 @@ import { Link } from "react-router-dom"
 import 'semantic-ui-css/semantic.min.css'
 import { Menu, Image, Dropdown } from 'semantic-ui-react'
 import logo from '../../images/B.png'
+// import userSimpleAuth from "../../hooks/ui/useSimpleAuth"
 
 
 
 const NavBar = props => {
-//   const { isAuthenticated, logout } = useSimpleAuth()
+//   const { isAuthenticated, logout } = userSimpleAuth()
 
     return (
         <Menu size="large" >
