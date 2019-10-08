@@ -1,4 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { withRouter, Route } from "react-router-dom";
+
+import "semantic-ui-css/semantic.min.css";
 
 const Product = props => {
   return (
@@ -6,13 +10,15 @@ const Product = props => {
       <section>
         <ul>
           <li>
-            <a href={props.product.url}>{props.product.name}</a>
+            <img src={props.product.image}></img>
+          </li>
+          <li>
+            <Link to={`/products/${props.product.id}`}>
+              {props.product.name}
+            </Link>
           </li>
           <li>{props.product.price}</li>
           <li>{props.product.description}</li>
-          <li>
-            <img src={props.product.image}></img>
-          </li>
         </ul>
       </section>
     </>

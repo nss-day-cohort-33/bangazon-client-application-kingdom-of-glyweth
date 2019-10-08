@@ -29,7 +29,7 @@ const ApplicationViews = () => {
         exact
         path="/"
         render={props => {
-          return <HomePage {...props} />;
+          return <HomePage products={products} {...props} />;
         }}
       />
       <Route
