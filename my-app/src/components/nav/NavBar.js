@@ -23,7 +23,7 @@ const NavBar = props => {
                     Categories
                 </Menu.Item>
 
-                <Menu.Item as={Link} to="/" >
+                <Menu.Item as={Link} to="/sellproducts" >
                     Sell A Product
                 </Menu.Item>
 
