@@ -22,7 +22,6 @@ const Login = props => {
             "password": password.current.value
         }
 
-        console.log(credentials)
         login(credentials)
             .then(() => {
                 props.history.push({
