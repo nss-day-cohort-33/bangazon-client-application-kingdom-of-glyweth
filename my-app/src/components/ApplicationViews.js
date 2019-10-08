@@ -5,6 +5,7 @@ import Register from "./auth/Register";
 import Product from "./product/ProductDetail";
 import APImanager from "../modules/APImanager";
 import HomePage from "./homePage/HomePage";
+import CategoryPage from "./productCategory/CategoryPage";
 
 const ApplicationViews = () => {
   const [products, setProducts] = useState([]);
@@ -35,6 +36,14 @@ const ApplicationViews = () => {
         path="/login"
         render={props => {
           return <Login {...props} />;
+        }}
+      />
+
+      <Route
+        exact
+        path="/product_category"
+        render={props => {
+          return <CategoryPage {...props} />;
         }}
       />
 
