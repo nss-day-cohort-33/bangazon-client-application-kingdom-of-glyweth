@@ -8,12 +8,20 @@ import APImanager from "../modules/APImanager"
 
 const ApplicationViews = () => {
   const [products, setProducts] = useState([])
+  const [product_categories, setProductCategories] = useState([])
 
   const getProducts = () => {
     APImanager.getAll("products")
     .then(setProducts)
   }
-  useEffect(getProducts, [])
+  const getProductCategories = () => {
+    APImanager.getAll("product_category")
+    .then(setProductCategories)
+  }
+  useEffect(() => {
+    getProducts()
+    getProductCategories()
+  }, [])
 
     return (
       <React.Fragment>
@@ -44,7 +52,7 @@ const ApplicationViews = () => {
                   if (!product) {
                     product = {id:404, name:"404"}
                   }
-                  return <Product product={product} />
+                  return <Product product={product} product_categories={product_categories} />
               }}
               />
 

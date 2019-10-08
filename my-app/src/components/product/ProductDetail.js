@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import React from "react"
 
 const Product = props => {
 
@@ -16,7 +16,7 @@ const Product = props => {
                     <h5>${props.product.price}</h5>
                     <p>Description: {props.product.description}</p>
                     <p>QTY REMAINING: {props.product.quantity_available}</p>
-                    <button></button>
+                    <button>Add to Order</button>
                 </section>
             </>
         )
