@@ -6,6 +6,7 @@ import { Form, Button, Grid } from "semantic-ui-react";
 // - Connect form to a Post call from home page?
 // - Category dropdown needs to populate from product category passed down through props? Or maybe that needs to be a call right here in products
 //FIGURE OUT TOKEN
+//authorization?
 
 const SellProductForm = props => {
     // const [itineraryList, setCategoryList] = useState([])
