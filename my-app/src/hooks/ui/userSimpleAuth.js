@@ -3,7 +3,7 @@
 
 import { useState } from "react"
 
-const useSimpleAuth = () => {
+const userSimpleAuth = () => {
 
     const [loggedIn, setIsLoggedIn] = useState(false)
 
@@ -54,4 +54,4 @@ const useSimpleAuth = () => {
     return { isAuthenticated, logout, login, register }
 }
 
-export default useSimpleAuth
+export default userSimpleAuth
