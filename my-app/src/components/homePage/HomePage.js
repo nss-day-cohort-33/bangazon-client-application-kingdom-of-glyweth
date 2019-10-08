@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ProductList from "./ProductList";
+import ProductList from "../product/ProductList";
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 
 const HomePage = props => {

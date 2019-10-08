@@ -1,7 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { withRouter, Route } from "react-router-dom";
-
 import "semantic-ui-css/semantic.min.css";
 
 const Product = props => {
@@ -9,9 +7,6 @@ const Product = props => {
     <>
       <section>
         <ul>
-          <li>
-            <img src={props.product.image}></img>
-          </li>
           <li>
             <Link to={`/products/${props.product.id}`}>
               {props.product.name}
