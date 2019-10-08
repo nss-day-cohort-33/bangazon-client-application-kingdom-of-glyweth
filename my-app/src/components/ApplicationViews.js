@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { withRouter, Route } from "react-router-dom";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
-import Blank from "./blank";
 import Product from "./product/ProductDetail";
 import APImanager from "../modules/APImanager";
 import HomePage from "./homePage/HomePage";
@@ -38,14 +37,7 @@ const ApplicationViews = () => {
           return <Login {...props} />;
         }}
       />
-      {/* <Route
-        exact
-        path="/"
-        render={props => {
-          return <Blank {...props} />;
-        }}
-      />
-      ' */}
+
       <Route
         path="/register"
         render={props => {

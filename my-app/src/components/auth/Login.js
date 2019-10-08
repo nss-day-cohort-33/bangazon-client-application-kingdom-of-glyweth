@@ -2,7 +2,7 @@ import React, { useRef } from "react"
 import "./Login.css"
 import { Link } from "react-router-dom"
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
-import { Form, Label, Input, Button } from "semantic-ui-react"
+import { Form, Label, Button } from "semantic-ui-react"
 
 
 const Login = props => {
@@ -53,9 +53,9 @@ const Login = props => {
                         required />
                 </Form.Field>
                 <Form.Field>
-                    {/* <Button onClick={handleLogin}>
+                    <Button onClick={handleLogin}>
                         Sign in
-                    </Button> */}
+                    </Button>
                 </Form.Field>
                 <Form.Field>
                 Not a Member? <Link to="/register">Register Here</Link>
