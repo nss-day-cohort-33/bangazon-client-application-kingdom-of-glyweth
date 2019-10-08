@@ -24,8 +24,8 @@ export default {
                 .then(response => response.json())
         // }
     },
-    post(newObject) {
-      return fetch(`${remoteURL}/resource`, {
+    post(resource, newObject) {
+      return fetch(`${remoteURL}/${resource}`, {
         "method": "POST",
         "headers": {
           "Accept": "application/json",
@@ -35,8 +35,8 @@ export default {
         body: JSON.stringify(newObject)
       }).then(data => data.json())
     },
-    put(resourceObject) {
-      return fetch(`${remoteURL}/resource/${resourceObject.id}`, {
+    put(resource, resourceObject) {
+      return fetch(`${remoteURL}/${resource}/${resourceObject.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"

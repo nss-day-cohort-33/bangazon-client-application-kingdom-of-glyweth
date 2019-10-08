@@ -9,8 +9,11 @@ import APImanager from "../modules/APImanager"
 const ApplicationViews = () => {
   const [products, setProducts] = useState([])
 
-  APImanager.getAll(products)
-  useEffect(setProducts, [])
+  const getProducts = () => {
+    APImanager.getAll("products")
+    .then(setProducts)
+  }
+  useEffect(getProducts, [])
 
     return (
       <React.Fragment>
