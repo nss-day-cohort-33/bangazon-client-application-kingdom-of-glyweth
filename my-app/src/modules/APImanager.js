@@ -10,14 +10,11 @@ export default {
               "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
           }
       }).then(response => response.json())
-        .then((allResources) => {
-            setStateOfThem(allResources)
-        })
     //   }
     },
-    getAll() {
+    getAll(resource) {
         // if (isAuthenticated()) {
-            return fetch(`${remoteURL}/resource`, {
+            return fetch(`${remoteURL}/${resource}`, {
                 "method": "GET",
                 "headers": {
                     "Accept": "application/json",
@@ -25,7 +22,6 @@ export default {
                 }
             })
                 .then(response => response.json())
-                .then(setStateOfResources)
         // }
     },
     post(newObject) {
@@ -48,15 +44,14 @@ export default {
         "body": JSON.stringify(resourceObject)
       }).then(data => data.json());
     },
-    delete() {
+    delete(resource) {
         // if (isAuthenticated()) {
-            return fetch(`${remoteURL}/resource/${resource.id}`, {
+            return fetch(`${remoteURL}/${resource}/${resource.id}`, {
                 "method": "DELETE",
                 "headers": {
                 "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
                 }
             })
-            .then(getResources)
         // }
     }
   }
