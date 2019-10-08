@@ -18,11 +18,17 @@ const ApplicationViews = () => {
                 exact path="/" render={props => {
                     return <Blank {...props} />
                 }}
-            />'
+            />
             <Route
                 path="/register"
                 render={props => {
                 return <Register {...props} />
+                }}
+            />
+            <Route
+                path="/myprofile"
+                render={props => {
+                    // return <MyProfile {...props} />
                 }}
             />
       </React.Fragment>
