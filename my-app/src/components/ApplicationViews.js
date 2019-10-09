@@ -30,20 +30,7 @@ const ApplicationViews = () => {
     getProductCategories();
     getCustomers()
   }, []);
-    //   const getCustomers = () => {
-//     if (isAuthenticated()) {
-//         fetch(`http://localhost:8000/customer`, {
-//             "method": "GET",
-//             "headers": {
-//                 "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
-//             }
-//         })
-//             .then(response => response.json())
-//             .then(setCustomers)
-//         }
-//     }
-//     useEffect(() => {
-//         getCustomers()}, [])
+
 
   return (
     <React.Fragment>

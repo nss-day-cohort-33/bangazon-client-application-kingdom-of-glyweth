@@ -13,6 +13,8 @@ const AddPaymentForm = props => {
     // const currentDate = moment().format("YYYY/MM/DD");
     // const expiration = new Date(expiration_date.current.value)
     const today = new Date().setHours(0,0,0,0)
+    console.log("customer", props.customers[0])
+
 
     const addPayment = () => {
         fetch('http://localhost:8000/payment', {
@@ -23,21 +25,17 @@ const AddPaymentForm = props => {
                 "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
             },
             "body": JSON.stringify({
-                "ride_id": props.ride.id,
+                "merchant_name": merchant_name.current.value,
+                "account_number": account_number.current.value,
+                "expiration_date": expiration_date.current.value,
             })
         })
         .then(response => response.json())
         .then(() => {
             console.log("Added")
-            const newPayment ={
-                "merchant_name": merchant_name.current.value,
-                "account_number": account_number.current.value,
-                "expiration_date": expiration_date.current.value,
-                // "customer":
-
-            }
             props.history.push("/myprofile")
-        })
+            }
+        )
     }
 
 
