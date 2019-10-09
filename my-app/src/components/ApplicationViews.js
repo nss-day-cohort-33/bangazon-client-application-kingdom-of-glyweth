@@ -3,6 +3,7 @@ import { withRouter, Route } from "react-router-dom"
 import Login from "./auth/Login"
 import Register from "./auth/Register"
 import Blank from "./blank"
+import MyProfile from "./profile/MyProfile"
 
 const ApplicationViews = () => {
     return (
@@ -28,7 +29,7 @@ const ApplicationViews = () => {
             <Route
                 path="/myprofile"
                 render={props => {
-                    // return <MyProfile {...props} />
+                    return <MyProfile {...props} />
                 }}
             />
       </React.Fragment>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import userSimpleAuth from "../../hooks/ui/userSimpleAuth"
+import { Link } from "react-router-dom"
+import { statement } from "@babel/template"
 
 
 //  Given the user is authenticated
@@ -22,21 +24,88 @@ import userSimpleAuth from "../../hooks/ui/userSimpleAuth"
 
 const MyProfile = props => {
 
-    const [customer, setCustomers] = useState([])
-    const [payments, setPaymets] = useState([])
+    const [customers, setCustomers] = useState([])
+    const [payments, setPayments] = useState([])
     const { isAuthenticated } = userSimpleAuth()
 
     const getCustomers = () => {
-        const customerid = ""
-       if (isAuthenticated()) {
-           fetch(`http://localhost:8000/customers/${customerid}`, {
-               "method": "GET",
-               "headers": {
-                   "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
-               }
-           })
-           .then(response => response.json())
-           .then(setCustomers)
+        if (isAuthenticated()) {
+            fetch(`http://localhost:8000/customer`, {
+                "method": "GET",
+                "headers": {
+                    "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+                }
+            })
+                .then(response => response.json())
+                .then(setCustomers)
+        }
     }
+    const getPayment = () => {
+        if (isAuthenticated()) {
+            fetch(`http://localhost:8000/payment`, {
+                "method": "GET",
+                "headers": {
+                    "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+                }
+            })
+                .then(response => response.json())
+                .then(setPayments)
+        }
+    }
+    useEffect(getCustomers, [])
+    useEffect(getPayment, [])
+
+    const handleDeleteButton = (id) => {
+        const confirm = window.confirm("Are you sure you wish to remove this?")
+        if(confirm === true){
+            console.log(id)
+            fetch(`http://localhost:8000/payments/${id}`, {
+                "method": "Delete",
+                "headers": {
+                    "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+                }
+            })
+            .then(() => {
+                getPayment()
+            })
+
+            } else {
+            console.log("false works")
+        }
+    }
+
+    console.log("customers", customers)
+    console.log("payments", payments)
+    return (
+        <>
+        <h2>Payment Types</h2>
+        <Link to="/paymentForm">Add New Payment</Link>
+        <ul>
+        {
+            payments.map((payment) => {
+                return<li key={payment.id} id={payment.id} style={{ listStyleType: "none" }}>
+                    <strong>Merchant:</strong> {payment.merchant_name}
+                    <br></br>
+                    <strong>Card Number:</strong> {payment.account_number}
+                    <br></br>
+                    <strong>Expiration Date:</strong> {payment.expiration_date}
+                    <br></br>
+                    <button onClick={() => handleDeleteButton(payment.id)} >Delete Payment Option</button>
+                    <br></br>
+                    <br></br>
+                </li>
+            })
+        }
+        </ul>
+        {/* {
+            customer.map((customer) => {
+            return<h1>{customer} Profile</h1>
+
+
+        })
+        } */}
+        </>
+    )
 }
-}
+
+export default MyProfile

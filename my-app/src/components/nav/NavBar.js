@@ -30,7 +30,7 @@ const NavBar = props => {
 
                 <Dropdown item simple text='My Settings' >
                 <Dropdown.Menu>
-                    <Dropdown.Item as={Link} to="/">Profile</Dropdown.Item>
+                    <Dropdown.Item as={Link} to="/myprofile">Profile</Dropdown.Item>
                     <Dropdown.Item as={Link} to="/">My Orders</Dropdown.Item>
                     <Dropdown.Item as={Link} to="/">Reports</Dropdown.Item>
                 </Dropdown.Menu>
