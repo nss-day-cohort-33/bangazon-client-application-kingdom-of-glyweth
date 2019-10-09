@@ -21,7 +21,7 @@ const NavBar = props => {
                     Home
                 </Menu.Item>
 
-                <Menu.Item as={Link} to="/" position='right'>
+                <Menu.Item as={Link} to="/product_category" position='right'>
                     Categories
                 </Menu.Item>
 
