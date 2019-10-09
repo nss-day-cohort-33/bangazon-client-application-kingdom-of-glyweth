@@ -6,6 +6,8 @@ import MyProfile from "./profile/MyProfile"
 import AddPaymentForm from "./profile/AddPayment"
 import Product from "./product/ProductDetail";
 import APImanager from "../modules/APImanager";
+import useSimpleAuth from "../hooks/ui/useSimpleAuth"
+import SellProductForm from "./home/SellProductForm"
 import HomePage from "./homePage/HomePage";
 import isAuthenticated from "../hooks/ui/useSimpleAuth"
 
@@ -13,7 +15,7 @@ const ApplicationViews = () => {
   const [products, setProducts] = useState([]);
   const [product_categories, setProductCategories] = useState([]);
   const [customers, setCustomers] = useState([]);
-
+  const { isAuthenticated } = useSimpleAuth()
 
   const getProducts = () => {
     APImanager.getAll("products").then(setProducts);
@@ -25,17 +27,23 @@ const ApplicationViews = () => {
   const getCustomers = () => {
       APImanager.getAll("customer").then(setCustomers)
     }
-    useEffect(() => {
+//     useEffect(() => {
+//     APImanager.getAll("product_category")
+//     .then(setProductCategories)
+//   }
+  const addProduct = (newProduct) => {
+    return APImanager.post("products", newProduct)
+  }
+
+  useEffect(() => {
     getProducts();
     getProductCategories();
     getCustomers()
   }, []);
 
-
-  return (
-    <React.Fragment>
-      {/* <h1>YoYo!</h1> */}
-      <Route
+    return (
+      <React.Fragment>
+        <Route
         exact
         path="/"
         render={props => {
@@ -65,6 +73,15 @@ const ApplicationViews = () => {
             render={props => {
                 return <AddPaymentForm customers={customers} {...props} />
             }}
+        />
+        <Route path="/sellproducts" render={props => {
+            if(isAuthenticated()){
+              return <SellProductForm product_categories={product_categories} addProduct={addProduct} {...props} />
+            }
+            else {
+              return <Login {...props} />
+            }
+          }}
         />
         <Route
         exact

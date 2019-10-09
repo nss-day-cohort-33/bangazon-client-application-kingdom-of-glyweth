@@ -1,11 +1,12 @@
-import React from "react"
-    import { Link } from "react-router-dom"
-    import 'semantic-ui-css/semantic.min.css'
-import { Menu, Image, Dropdown } from 'semantic-ui-react'
-import logo from '../../images/B.png'
+import React from "react";
+import { Link } from "react-router-dom";
+import "semantic-ui-css/semantic.min.css";
+import { Menu, Image, Dropdown } from "semantic-ui-react";
+import logo from "../../images/B.png";
 // import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 
 
+//SN- Simple navigation bar, please add your routes as you create new pages.
 
 const NavBar = props => {
 //   const { isAuthenticated, logout } = useSimpleAuth()
@@ -24,7 +25,7 @@ const NavBar = props => {
                     Categories
                 </Menu.Item>
 
-                <Menu.Item as={Link} to="/" >
+                <Menu.Item as={Link} to="/sellproducts" >
                     Sell A Product
                 </Menu.Item>
 
