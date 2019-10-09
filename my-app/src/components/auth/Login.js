@@ -8,7 +8,11 @@ import { Form, Label, Button } from "semantic-ui-react"
 const Login = props => {
     const username = useRef()
     const password = useRef()
+<<<<<<< HEAD
     const { login, isAuthenticated } = useSimpleAuth()
+=======
+    const { login } = useSimpleAuth()
+>>>>>>> master
 
     // Simplistic handler for login submit
     const handleLogin = (e) => {
