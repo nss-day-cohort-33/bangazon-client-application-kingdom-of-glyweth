@@ -45,7 +45,7 @@ const AddPaymentForm = props => {
         console.log("today", today)
         // console.log(Date.parse(new Date.expiration_date.current.value))
 
-        if(new Date(expiration_date.current.value) < today) {
+        if(new Date(expiration_date.current.value) <= today) {
             alert("Please provide a card with a date in the future")
         } else{
             addPayment()
