@@ -79,7 +79,7 @@ const MyProfile = props => {
     return (
         <>
         <h2>Payment Types</h2>
-        <Link to="/paymentForm">Add New Payment</Link>
+        <Link to="/paymentform">Add New Payment</Link>
         <ul>
         {
             payments.map((payment) => {

@@ -4,6 +4,7 @@ import Login from "./auth/Login"
 import Register from "./auth/Register"
 import Blank from "./blank"
 import MyProfile from "./profile/MyProfile"
+import AddPaymentForm from "./profile/AddPayment"
 
 const ApplicationViews = () => {
     return (
@@ -30,6 +31,12 @@ const ApplicationViews = () => {
                 path="/myprofile"
                 render={props => {
                     return <MyProfile {...props} />
+                }}
+            />
+            <Route
+                path="/paymentform"
+                render={props => {
+                    return <AddPaymentForm {...props} />
                 }}
             />
       </React.Fragment>
