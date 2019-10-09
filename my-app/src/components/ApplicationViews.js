@@ -1,32 +1,44 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react";
 import { withRouter, Route } from "react-router-dom"
 import Login from "./auth/Login"
 import Register from "./auth/Register"
+import MyProfile from "./profile/MyProfile"
+import AddPaymentForm from "./profile/AddPayment"
+import Product from "./product/ProductDetail";
+import APImanager from "../modules/APImanager";
 import useSimpleAuth from "../hooks/ui/useSimpleAuth"
 import SellProductForm from "./home/SellProductForm"
-import Product from "./product/ProductDetail"
-import APImanager from "../modules/APImanager"
 import HomePage from "./homePage/HomePage";
+import isAuthenticated from "../hooks/ui/useSimpleAuth"
 
 const ApplicationViews = () => {
-  const [products, setProducts] = useState([])
-  const [product_categories, setProductCategories] = useState([])
+  const [products, setProducts] = useState([]);
+  const [product_categories, setProductCategories] = useState([]);
+  const [customers, setCustomers] = useState([]);
   const { isAuthenticated } = useSimpleAuth()
 
   const getProducts = () => {
     APImanager.getAll("products").then(setProducts);
   };
   const getProductCategories = () => {
-    APImanager.getAll("product_category")
-    .then(setProductCategories)
-  }
+    APImanager.getAll("product_category").then(setProductCategories);
+  };
+
+  const getCustomers = () => {
+      APImanager.getAll("customer").then(setCustomers)
+    }
+//     useEffect(() => {
+//     APImanager.getAll("product_category")
+//     .then(setProductCategories)
+//   }
   const addProduct = (newProduct) => {
     return APImanager.post("products", newProduct)
   }
- 
+
   useEffect(() => {
     getProducts();
     getProductCategories();
+    getCustomers()
   }, []);
 
     return (
@@ -37,12 +49,13 @@ const ApplicationViews = () => {
         render={props => {
           return <HomePage products={products} {...props} />;
         }}
-        />
-        <Route
-            path="/login" render={props => {
-                return <Login {...props} />
-            }}
-        />
+      />
+      <Route
+        path="/login"
+        render={props => {
+          return <Login {...props} />;
+        }}
+      />
         <Route
             path="/register"
             render={props => {
@@ -50,17 +63,17 @@ const ApplicationViews = () => {
             }}
         />
         <Route
-          exact path="/products/:each(\d+)"
-          render={props => {
-            let product = products.find(each =>
-              each.id === parseInt(props.match.params.each)
-              )
-              if (!product) {
-                product = {id:404, name:"404"}
-              }
-              return <Product product={product} product_categories={product_categories} />
-          }}
-          />
+            path="/myprofile"
+            render={props => {
+                return <MyProfile customers={customers} {...props} />
+            }}
+        />
+        <Route
+            path="/paymentform"
+            render={props => {
+                return <AddPaymentForm customers={customers} {...props} />
+            }}
+        />
         <Route path="/sellproducts" render={props => {
             if(isAuthenticated()){
               return <SellProductForm product_categories={product_categories} addProduct={addProduct} {...props} />
@@ -70,9 +83,26 @@ const ApplicationViews = () => {
             }
           }}
         />
-
-      </React.Fragment>
-    )
-}
+        <Route
+        exact
+        path="/products/:each(\d+)"
+        render={props => {
+        let product = products.find(
+            each => each.id === parseInt(props.match.params.each)
+        );
+        if (!product) {
+            product = { id: 404, name: "404" };
+        }
+        return (
+            <Product
+            product={product}
+            product_categories={product_categories}
+            />
+        );
+        }}
+      />
+    </React.Fragment>
+  );
+};
 
 export default withRouter(ApplicationViews);
