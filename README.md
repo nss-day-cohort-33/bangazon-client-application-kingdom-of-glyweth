@@ -12,7 +12,7 @@ These instructions will get you a copy of the project up and running on your loc
 1. A computer
 2. Visual Studio
 3. NPM
-4. Semantic UI React (for navbar)
+4. Semantic UI React (for navbar & login)
 
 ### Installing
 
