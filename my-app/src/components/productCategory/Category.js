@@ -4,7 +4,6 @@ import "semantic-ui-css/semantic.min.css";
 
 const Category = props => {
   const clearAndReset = () => {
-    console.log("clicked");
     sessionStorage.clear();
     sessionStorage.setItem("category", props.category.id);
   };
