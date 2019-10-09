@@ -52,7 +52,7 @@ const SellProductForm = props => {
             name="price"
             className="form-control"
             type="text"
-            placeholder="100.00"
+            placeholder="Format: 100.00"
             required autoFocus />
         <label htmlFor="qty"> Qty </label>
           <input ref={qty} type="text"
@@ -83,7 +83,7 @@ const SellProductForm = props => {
           className="form-control"
           placeholder="Tell us about this product..."
           rows="4" cols="50"
-          maxlength="300"
+          maxLength="300"
           autoFocus />
       </fieldset>
 
