@@ -21,24 +21,29 @@ const ApplicationViews = () => {
   const getProductCategories = () => {
     APImanager.getAll("product_category").then(setProductCategories);
   };
-  useEffect(() => {
-    getProducts();
-    getProductCategories();
-  }, []);
+
   const getCustomers = () => {
-    if (isAuthenticated()) {
-        fetch(`http://localhost:8000/customer`, {
-            "method": "GET",
-            "headers": {
-                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
-            }
-        })
-            .then(response => response.json())
-            .then(setCustomers)
-        }
+      APImanager.getAll("customer").then(setCustomers)
     }
     useEffect(() => {
-        getCustomers()}, [])
+    getProducts();
+    getProductCategories();
+    getCustomers()
+  }, []);
+    //   const getCustomers = () => {
+//     if (isAuthenticated()) {
+//         fetch(`http://localhost:8000/customer`, {
+//             "method": "GET",
+//             "headers": {
+//                 "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+//             }
+//         })
+//             .then(response => response.json())
+//             .then(setCustomers)
+//         }
+//     }
+//     useEffect(() => {
+//         getCustomers()}, [])
 
   return (
     <React.Fragment>
