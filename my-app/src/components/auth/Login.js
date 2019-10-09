@@ -8,7 +8,7 @@ import { Form, Label, Button } from "semantic-ui-react"
 const Login = props => {
     const username = useRef()
     const password = useRef()
-    const { login } = useSimpleAuth()
+    const { login, isAuthenticated } = useSimpleAuth()
 
     // Simplistic handler for login submit
     const handleLogin = (e) => {
@@ -25,9 +25,11 @@ const Login = props => {
 
         login(credentials)
             .then(() => {
+                isAuthenticated() ?
                 props.history.push({
                     pathname: "/"
-                })
+                }) :
+                alert("Please use correct Username or Password")
             })
     }
 

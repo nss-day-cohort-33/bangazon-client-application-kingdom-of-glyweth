@@ -2,15 +2,22 @@ import React, { useEffect, useState } from "react";
 import { withRouter, Route } from "react-router-dom";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
+import MyProfile from "./profile/MyProfile";
+import AddPaymentForm from "./profile/AddPayment";
 import Product from "./product/ProductDetail";
 import APImanager from "../modules/APImanager";
+import useSimpleAuth from "../hooks/ui/useSimpleAuth";
+import SellProductForm from "./home/SellProductForm";
 import HomePage from "./homePage/HomePage";
 import CategoryPage from "./productCategory/CategoryPage";
 import ProductCategoryList from "./productCategory/ProductCategoryList";
+import isAuthenticated from "../hooks/ui/useSimpleAuth";
 
 const ApplicationViews = () => {
   const [products, setProducts] = useState([]);
   const [product_categories, setProductCategories] = useState([]);
+  const [customers, setCustomers] = useState([]);
+  const { isAuthenticated } = useSimpleAuth();
 
   const getProducts = () => {
     APImanager.getAll("products").then(setProducts);
@@ -18,14 +25,26 @@ const ApplicationViews = () => {
   const getProductCategories = () => {
     APImanager.getAll("product_category").then(setProductCategories);
   };
+
+  const getCustomers = () => {
+    APImanager.getAll("customer").then(setCustomers);
+  };
+  //     useEffect(() => {
+  //     APImanager.getAll("product_category")
+  //     .then(setProductCategories)
+  //   }
+  const addProduct = newProduct => {
+    return APImanager.post("products", newProduct);
+  };
+
   useEffect(() => {
     getProducts();
     getProductCategories();
+    getCustomers();
   }, []);
 
   return (
     <React.Fragment>
-      {/* <h1>YoYo!</h1> */}
       <Route
         exact
         path="/"
@@ -66,6 +85,35 @@ const ApplicationViews = () => {
         path="/register"
         render={props => {
           return <Register {...props} />;
+        }}
+      />
+
+      <Route
+        path="/myprofile"
+        render={props => {
+          return <MyProfile customers={customers} {...props} />;
+        }}
+      />
+      <Route
+        path="/paymentform"
+        render={props => {
+          return <AddPaymentForm customers={customers} {...props} />;
+        }}
+      />
+      <Route
+        path="/sellproducts"
+        render={props => {
+          if (isAuthenticated()) {
+            return (
+              <SellProductForm
+                product_categories={product_categories}
+                addProduct={addProduct}
+                {...props}
+              />
+            );
+          } else {
+            return <Login {...props} />;
+          }
         }}
       />
       <Route
