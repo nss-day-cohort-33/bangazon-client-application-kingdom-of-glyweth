@@ -6,6 +6,7 @@ import Product from "./product/ProductDetail";
 import APImanager from "../modules/APImanager";
 import HomePage from "./homePage/HomePage";
 import CategoryPage from "./productCategory/CategoryPage";
+import ProductCategoryList from "./productCategory/ProductCategoryList";
 
 const ApplicationViews = () => {
   const [products, setProducts] = useState([]);
@@ -44,6 +45,20 @@ const ApplicationViews = () => {
         path="/product_category"
         render={props => {
           return <CategoryPage {...props} />;
+        }}
+      />
+
+      <Route
+        exact
+        path="/products_by_category"
+        render={props => {
+          return (
+            <ProductCategoryList
+              products={products}
+              product_categories={product_categories}
+              {...props}
+            />
+          );
         }}
       />
 

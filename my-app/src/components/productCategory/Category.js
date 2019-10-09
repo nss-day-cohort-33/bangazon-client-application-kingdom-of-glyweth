@@ -3,12 +3,17 @@ import { Link } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
 
 const Category = props => {
+  const clearAndReset = () => {
+    console.log("clicked");
+    sessionStorage.clear();
+    sessionStorage.setItem("category", props.category.id);
+  };
   return (
     <>
       <section>
         <ul>
           <li>
-            <Link to={`/products/${props.category.id}`}>
+            <Link onClick={clearAndReset()} to={"/products_by_category"}>
               {props.category.name}
             </Link>
           </li>
