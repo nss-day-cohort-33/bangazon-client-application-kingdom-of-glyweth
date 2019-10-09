@@ -1,10 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 
-// TODO:
-// - Connect form to a Post call from home page?
-//Create alert for category
-//restrict characters in description to ???
-
 const SellProductForm = props => {
   const title = useRef()
   const price = useRef()
@@ -17,21 +12,24 @@ const SellProductForm = props => {
 
     const newProduct = {
       "name": title.current.value,
-      "price": price.current.value,
+      "price": parseInt(price.current.value),
       "quantity_available": qty.current.value,
+      "quantity_sold": 0,
       "product_category_id": category.current.value,
       "description": description.current.value
       }
-      if(newProduct.product_category_id = "nope"){
-        window.confirm("Please Choose A Category!")
+      if(newProduct.product_category_id === "nope"){
+        console.log(newProduct)
+        window.alert("Please Choose A Category!")
       }
       else{
         console.log(newProduct)
-        // props.addProduct(newProduct).then(() => {
-        //   props.history.push({
-        //       pathname: "/"
-        //   })
-        // })
+        props.addProduct(newProduct)
+        .then(() => {
+          props.history.push({
+              pathname: "/"
+          })
+        })
       }
     }
 
@@ -53,7 +51,8 @@ const SellProductForm = props => {
           <input ref={price} type="text"
             name="price"
             className="form-control"
-            placeholder="Price"
+            type="text"
+            placeholder="100.00"
             required autoFocus />
         <label htmlFor="qty"> Qty </label>
           <input ref={qty} type="text"
@@ -65,13 +64,11 @@ const SellProductForm = props => {
 
       <fieldset>
         <label>Category *</label>
-        <select ref={category} className="form-control" name="category" placeholder="Category" required >
-          <option value={"nope"} >Please Choose Category</option>
+        <select ref={category} className="form-control" name="category" required >
+          <option value="nope" disabled selected>Select Category</option>
           {
           props.product_categories.map((category) => {
-            return <>
-              <option value={category.id} >{category.name}</option>
-            </>
+            return <option value={category.id} >{category.name}</option>
             })
           }
         </select>
@@ -86,6 +83,7 @@ const SellProductForm = props => {
           className="form-control"
           placeholder="Tell us about this product..."
           rows="4" cols="50"
+          maxlength="300"
           autoFocus />
       </fieldset>
 
