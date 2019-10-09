@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react"
 import { withRouter } from "react-router-dom"
-import useSimpleAuth from "../../hooks/ui/userSimpleAuth"
+import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 import moment from 'moment';
 
 const AddPaymentForm = props => {
@@ -12,7 +12,7 @@ const AddPaymentForm = props => {
 
     // const currentDate = moment().format("YYYY/MM/DD");
     // const expiration = new Date(expiration_date.current.value)
-    const today = new Date().setHours(,0,0,0)
+    const today = new Date().setHours(0,0,0,0)
 
     const addPayment = () => {
         fetch('http://localhost:8000/payment', {
@@ -32,10 +32,11 @@ const AddPaymentForm = props => {
             const newPayment ={
                 "merchant_name": merchant_name.current.value,
                 "account_number": account_number.current.value,
-                "expiration_date": expiration_date.current.value
+                "expiration_date": expiration_date.current.value,
+                // "customer":
 
             }
-            props.history.push("/myitinerary")
+            props.history.push("/myprofile")
         })
     }
 

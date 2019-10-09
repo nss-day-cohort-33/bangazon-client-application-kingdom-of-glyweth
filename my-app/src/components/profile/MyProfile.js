@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"
-import userSimpleAuth from "../../hooks/ui/userSimpleAuth"
+import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 import { Link } from "react-router-dom"
 import { statement } from "@babel/template"
 
@@ -24,22 +24,9 @@ import { statement } from "@babel/template"
 
 const MyProfile = props => {
 
-    const [customers, setCustomers] = useState([])
     const [payments, setPayments] = useState([])
-    const { isAuthenticated } = userSimpleAuth()
+    const { isAuthenticated } = useSimpleAuth()
 
-    const getCustomers = () => {
-        if (isAuthenticated()) {
-            fetch(`http://localhost:8000/customer`, {
-                "method": "GET",
-                "headers": {
-                    "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
-                }
-            })
-                .then(response => response.json())
-                .then(setCustomers)
-        }
-    }
     const getPayment = () => {
         if (isAuthenticated()) {
             fetch(`http://localhost:8000/payment`, {
@@ -52,7 +39,7 @@ const MyProfile = props => {
                 .then(setPayments)
         }
     }
-    useEffect(getCustomers, [])
+
     useEffect(getPayment, [])
 
     const handleDeleteButton = (id) => {
@@ -74,7 +61,7 @@ const MyProfile = props => {
         }
     }
 
-    console.log("customers", customers)
+    // console.log("customers", customers)
     console.log("payments", payments)
     return (
         <>

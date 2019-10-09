@@ -1,14 +1,14 @@
 import React, { useRef } from "react"
 import "./Login.css"
 import { Link } from "react-router-dom"
-import userSimpleAuth from "../../hooks/ui/userSimpleAuth"
-import { Form, Label, Input, Button } from "semantic-ui-react"
+import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
+import { Form, Label, Button } from "semantic-ui-react"
 
 
 const Login = props => {
     const username = useRef()
     const password = useRef()
-    const { login, isAuthenticated } = userSimpleAuth()
+    const { login, isAuthenticated } = useSimpleAuth()
 
     // Simplistic handler for login submit
     const handleLogin = (e) => {
