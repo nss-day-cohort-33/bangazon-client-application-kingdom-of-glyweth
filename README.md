@@ -1,8 +1,7 @@
 ## Welcome To Bangazon
 
 It’s an e-commerce site much like amazon but with more Bs! All our products start with Bs because the best things always do. 
-Take Berkley and Ben for example, both start with Bs and both are quality developers who anyone would be LUCKY to have on 
-their team (hint hint possible employers).  Come have a look see, our prices can’t **B** beat.
+Take Berkley and Ben for example, both start with Bs and both are quality developers. Come have a look see, our prices can’t **B** beat.
 
 ## Getting Started
 
