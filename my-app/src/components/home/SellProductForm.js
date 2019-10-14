@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useRef } from "react";
 
 const SellProductForm = props => {
   const title = useRef()
@@ -51,7 +51,6 @@ const SellProductForm = props => {
           <input ref={price} type="text"
             name="price"
             className="form-control"
-            type="text"
             placeholder="Format: 100.00"
             required autoFocus />
         <label htmlFor="qty"> Qty </label>
