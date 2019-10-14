@@ -1,6 +1,9 @@
 import React from "react"
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 
+// By Alex Rumsey
+// Purpose: Displays payment options by customer, allows users to delete payment methods they have added w/ deletepayment function.
+
 const Payment = props => {
 
 

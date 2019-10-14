@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 import Payment from "./Payment"
 
+// By Alex Rumsey
+// Purpose: Gets payment options by customer ID, then displays payment options in a list titled "Payment".
 
 const PaymentOptions = props => {
     const [paymentOptions, setPayment] = useState([])
