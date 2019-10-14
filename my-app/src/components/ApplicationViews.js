@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { withRouter, Route } from "react-router-dom";
+import { withRouter, Route, Redirect } from "react-router-dom";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import MyProfile from "./profile/MyProfile";
@@ -11,6 +11,7 @@ import SellProductForm from "./home/SellProductForm";
 import HomePage from "./homePage/HomePage";
 import CategoryPage from "./productCategory/CategoryPage";
 import ProductCategoryList from "./productCategory/ProductCategoryList";
+import PaymentOptions from "./profile/PaymentOptions";
 import isAuthenticated from "../hooks/ui/useSimpleAuth";
 
 const ApplicationViews = () => {
@@ -98,6 +99,18 @@ const ApplicationViews = () => {
         path="/paymentform"
         render={props => {
           return <AddPaymentForm customers={customers} {...props} />;
+        }}
+      />
+      <Route
+        path="/paymentoptions"
+        render={props => {
+          if (isAuthenticated()) {
+            return (
+              <PaymentOptions {...props} />
+            )
+          } else {
+            return <Redirect to="/login" />
+          }
         }}
       />
       <Route
