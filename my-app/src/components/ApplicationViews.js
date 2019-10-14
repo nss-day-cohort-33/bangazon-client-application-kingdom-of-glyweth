@@ -72,13 +72,17 @@ const ApplicationViews = () => {
         exact
         path="/products_by_category"
         render={props => {
+          if (isAuthenticated()) {
           return (
             <ProductCategoryList
               products={products}
               product_categories={product_categories}
               {...props}
-            />
+          />
           );
+          } else {
+            return <Login {...props} />
+          }
         }}
       />
 
