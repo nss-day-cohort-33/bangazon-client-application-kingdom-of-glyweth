@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 import { Link } from "react-router-dom"
-import { statement } from "@babel/template"
 
 
 //  Given the user is authenticated
