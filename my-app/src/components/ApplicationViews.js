@@ -9,7 +9,8 @@ import APImanager from "../modules/APImanager";
 import useSimpleAuth from "../hooks/ui/useSimpleAuth";
 import SellProductForm from "./home/SellProductForm";
 import HomePage from "./homePage/HomePage";
-import CategoryPage from "./productCategory/CategoryPage";
+// import CategoryPage from "./productCategory/CategoryPage";
+import ProductCategory from "./productCategory/ProductCategory";
 import ProductCategoryList from "./productCategory/ProductCategoryList";
 import isAuthenticated from "../hooks/ui/useSimpleAuth";
 
@@ -63,7 +64,12 @@ const ApplicationViews = () => {
         exact
         path="/product_category"
         render={props => {
-          return <CategoryPage {...props} />;
+          return (
+            <ProductCategory
+              {...props}
+              product_categories={product_categories}
+            />
+          );
         }}
       />
 
@@ -132,6 +138,21 @@ const ApplicationViews = () => {
               product_categories={product_categories}
             />
           );
+        }}
+      />
+      <Route
+        exact
+        path="/types/:categoryId(\d+)"
+        render={props => {
+          console.log("params", props.match.params.categoryId, product_categories);
+          let category = product_categories.find(
+            category => category.id === +props.match.params.categoryId
+          );
+          console.log(category);
+          if (!category) {
+            category = { id: 404, name: "Category Not Found." };
+          }
+          return <ProductCategoryList {...props} category={category} />;
         }}
       />
     </React.Fragment>

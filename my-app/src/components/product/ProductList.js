@@ -6,8 +6,8 @@ const ProductList = props => {
     <>
       <article>
         {props.products
-          .slice(0, 20)
           .reverse()
+          .slice(0, 20)
           .map(product => (
             <Product key={product.id} product={product} />
           ))}
