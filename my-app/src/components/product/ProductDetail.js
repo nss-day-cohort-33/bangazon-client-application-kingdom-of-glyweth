@@ -11,7 +11,6 @@ const Product = props => {
         return (
             <>
                 <section className="productDetail" id="{props.product.id}">
-                    <h1>From {props.product.product_category} :</h1>
                     <h3>{props.product.name}</h3>
                     <h5>${props.product.price}</h5>
                     <p>Description: {props.product.description}</p>
@@ -21,6 +20,6 @@ const Product = props => {
             </>
         )
     }
-    
-    
+
+
 export default Product
