@@ -12,7 +12,6 @@ import HomePage from "./homePage/HomePage";
 import CategoryPage from "./productCategory/CategoryPage";
 import ProductCategoryList from "./productCategory/ProductCategoryList";
 import PaymentOptions from "./profile/PaymentOptions";
-import isAuthenticated from "../hooks/ui/useSimpleAuth";
 
 const ApplicationViews = () => {
   const [products, setProducts] = useState([]);
@@ -21,12 +20,11 @@ const ApplicationViews = () => {
   const { isAuthenticated } = useSimpleAuth();
 
   const getProducts = () => {
-    APImanager.getAll("products").then(setProducts);
+    APImanager.getAllUnauthorized("products").then(setProducts);
   };
   const getProductCategories = () => {
-    APImanager.getAll("product_category").then(setProductCategories);
+    APImanager.getAllUnauthorized("product_category").then(setProductCategories);
   };
-
   const getCustomers = () => {
     APImanager.getAll("customer").then(setCustomers);
   };
