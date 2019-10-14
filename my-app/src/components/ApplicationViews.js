@@ -11,8 +11,10 @@ import SellProductForm from "./home/SellProductForm";
 import HomePage from "./homePage/HomePage";
 // import CategoryPage from "./productCategory/CategoryPage";
 import ProductCategory from "./productCategory/ProductCategory";
-import ProductCategoryList from "./productCategory/ProductCategoryList";
+import ProdCatList from "./productCategory/ProdCatList";
 import isAuthenticated from "../hooks/ui/useSimpleAuth";
+import ProductCategories from "./productCategory/ProductCategories";
+import CategoryPage from "./productCategory/CategoryPage";
 
 const ApplicationViews = () => {
   const [products, setProducts] = useState([]);
@@ -57,33 +59,6 @@ const ApplicationViews = () => {
         path="/login"
         render={props => {
           return <Login {...props} />;
-        }}
-      />
-
-      <Route
-        exact
-        path="/product_category"
-        render={props => {
-          return (
-            <ProductCategory
-              {...props}
-              product_categories={product_categories}
-            />
-          );
-        }}
-      />
-
-      <Route
-        exact
-        path="/products_by_category"
-        render={props => {
-          return (
-            <ProductCategoryList
-              products={products}
-              product_categories={product_categories}
-              {...props}
-            />
-          );
         }}
       />
 
@@ -140,11 +115,29 @@ const ApplicationViews = () => {
           );
         }}
       />
-      <Route
+      {/* <Route
+        exact
+        path="/types"
+        render={props => {
+          console.log("types cats", product_categories);
+          return (
+            <ProductCategories
+              {...props}
+              product_categories={product_categories}
+            />
+          );
+        }}
+      /> */}
+
+      {/* <Route
         exact
         path="/types/:categoryId(\d+)"
         render={props => {
-          console.log("params", props.match.params.categoryId, product_categories);
+          console.log(
+            "params",
+            props.match.params.categoryId,
+            product_categories
+          );
           let category = product_categories.find(
             category => category.id === +props.match.params.categoryId
           );
@@ -152,9 +145,48 @@ const ApplicationViews = () => {
           if (!category) {
             category = { id: 404, name: "Category Not Found." };
           }
-          return <ProductCategoryList {...props} category={category} />;
+          return <ProdCatList {...props} category={category} />;
+        }}
+      /> */}
+      <Route
+        exact
+        path="/product_category"
+        render={props => {
+          console.log(product_categories);
+          let category = product_categories.find(
+            category => category.id === +props.match.params.categoryId
+          );
+          console.log(category);
+          if (!category) {
+            category = { id: 404, name: "Category Not Found." };
+          }
+          return (
+            <CategoryPage {...props} products={products} category={category} />
+          );
         }}
       />
+
+      {/* <Route
+        exact
+        path="/products_by_category"
+        render={props => {
+          let category = product_categories.find(
+            category => category.id === +props.match.params.categoryId
+          );
+          console.log(category);
+          if (!category) {
+            category = { id: 404, name: "Category Not Found." };
+          }
+          return (
+            <ProdCatList
+              {...props}
+              products={products}
+              product_categories={product_categories}
+              category={category}
+            />
+          );
+        }}
+      /> */}
     </React.Fragment>
   );
 };

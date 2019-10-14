@@ -11,9 +11,12 @@ const ProductCategory = props => {
   const [products, setProducts] = useState([]);
 
   const getProducts = () => {
-    fetch(`http://localhost:8000/products?product_category=${props.product_category.id}`, {
-      method: "GET"
-    })
+    fetch(
+      `http://localhost:8000/products?product_category="http://127.0.0.1:8000/product_category/${props.category.id}`,
+      {
+        method: "GET"
+      }
+    )
       .then(response => response.json())
       .then(setProducts);
   };
@@ -24,12 +27,15 @@ const ProductCategory = props => {
     <>
       {products.length > 0 ? (
         <article className="categoryList">
-          <Link className="nav-link" to={`/types/${props.product_categories.id}`}>
+          <Link
+            className="nav-link"
+            to={`/product_category/${props.product_category.id}`}
+          >
             <h3>
-              {props.product_categories.name}({products.length})
+              {props.product_category.name}({products.length})
             </h3>
           </Link>
-          <div className={`productDiv category-${props.product_categories.id}`}>
+          <div className={`productDiv category-${props.product_category.id}`}>
             {products.slice(0, 3).map(product => (
               <Product key={product.id} product={product} />
             ))}
