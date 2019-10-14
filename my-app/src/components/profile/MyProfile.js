@@ -67,6 +67,8 @@ const MyProfile = props => {
         <>
         <h2>Payment Types</h2>
         <Link to="/paymentform">Add New Payment</Link>
+        <br></br>
+        <Link to="/paymentoptions">Delete Payment</Link>
         <ul>
         {
             payments.map((payment) => {
@@ -76,9 +78,6 @@ const MyProfile = props => {
                     <strong>Card Number:</strong> {payment.account_number}
                     <br></br>
                     <strong>Expiration Date:</strong> {payment.expiration_date}
-                    <br></br>
-                    <button onClick={() => handleDeleteButton(payment.id)} >Delete Payment Option</button>
-                    <br></br>
                     <br></br>
                 </li>
             })
