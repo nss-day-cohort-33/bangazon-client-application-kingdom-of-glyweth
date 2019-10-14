@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
+import Product from "../product/Product"
 
 const Category = props => {
   const [products, setProducts] = useState([]);
@@ -17,23 +18,44 @@ const Category = props => {
   };
 
   useEffect(getProducts, []);
+  // return (
+  //   <>
+  //     <section>
+  //       <ul>
+  //         <li>
+  //           <Link to={"/products_by_category"}>
+  //             {props.category.name} {products.length}
+  //           </Link>
+
+  //           <ul>
+
+  //           </ul>
+  //         </li>
+  //       </ul>
+  //     </section>
+  //   </>
+  // );
   return (
     <>
-      <section>
-        <ul>
-          <li>
-            <Link to={"/products_by_category"}>
-              {props.category.name} {products.length}
-            </Link>
-
-            <ul>
-              {products.forEach(product => {
-                <li><Link to={`/products/${product.id}`}></Link></li>
-              })}
-            </ul>
-          </li>
-        </ul>
-      </section>
+      {products.length > 0 ? (
+        <article className="categoryList">
+          <Link
+            className="nav-link"
+            to={`/product_category/${props.category.id}`}
+          >
+            <h3>
+              {props.category.name}({products.length})
+            </h3>
+          </Link>
+          <div className={`productDiv category-${props.category.id}`}>
+            {products.map(product => (
+              <Product key={product.id} product={product} />
+            ))}
+          </div>
+        </article>
+      ) : (
+        ""
+      )}
     </>
   );
 };

@@ -115,40 +115,15 @@ const ApplicationViews = () => {
           );
         }}
       />
-      {/* <Route
-        exact
-        path="/types"
-        render={props => {
-          console.log("types cats", product_categories);
-          return (
-            <ProductCategories
-              {...props}
-              product_categories={product_categories}
-            />
-          );
-        }}
-      /> */}
 
-      {/* <Route
-        exact
-        path="/types/:categoryId(\d+)"
-        render={props => {
-          console.log(
-            "params",
-            props.match.params.categoryId,
-            product_categories
-          );
-          let category = product_categories.find(
-            category => category.id === +props.match.params.categoryId
-          );
-          console.log(category);
-          if (!category) {
-            category = { id: 404, name: "Category Not Found." };
-          }
-          return <ProdCatList {...props} category={category} />;
-        }}
-      /> */}
       <Route
+        exact
+        path="/product_category"
+        render={props => {
+          return <CategoryPage {...props} />;
+        }}
+      />
+      {/* <Route
         exact
         path="/product_category"
         render={props => {
@@ -162,28 +137,6 @@ const ApplicationViews = () => {
           }
           return (
             <CategoryPage {...props} products={products} category={category} />
-          );
-        }}
-      />
-
-      {/* <Route
-        exact
-        path="/products_by_category"
-        render={props => {
-          let category = product_categories.find(
-            category => category.id === +props.match.params.categoryId
-          );
-          console.log(category);
-          if (!category) {
-            category = { id: 404, name: "Category Not Found." };
-          }
-          return (
-            <ProdCatList
-              {...props}
-              products={products}
-              product_categories={product_categories}
-              category={category}
-            />
           );
         }}
       /> */}
