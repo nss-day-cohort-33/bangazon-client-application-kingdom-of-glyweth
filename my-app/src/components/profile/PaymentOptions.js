@@ -41,7 +41,7 @@ const PaymentOptions = props => {
               </>
               :
               <>
-                <Link className="nav-link" to="/payment/create">
+                <Link className="nav-link" to="/paymentform">
                   <h6>Add some Payment Options!</h6>
                 </Link>
               </>
