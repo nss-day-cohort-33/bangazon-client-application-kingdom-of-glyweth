@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useState } from "react"
+import React, { useRef } from "react"
 import { withRouter } from "react-router-dom"
-import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
+// import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 // import moment from 'moment';
 
 const AddPaymentForm = props => {

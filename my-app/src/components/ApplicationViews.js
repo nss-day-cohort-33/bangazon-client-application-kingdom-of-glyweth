@@ -11,7 +11,7 @@ import SellProductForm from "./home/SellProductForm";
 import HomePage from "./homePage/HomePage";
 import CategoryPage from "./productCategory/CategoryPage";
 import ProductCategoryList from "./productCategory/ProductCategoryList";
-import isAuthenticated from "../hooks/ui/useSimpleAuth";
+// import isAuthenticated from "../hooks/ui/useSimpleAuth";
 
 const ApplicationViews = () => {
   const [products, setProducts] = useState([]);
