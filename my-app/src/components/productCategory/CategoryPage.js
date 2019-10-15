@@ -3,6 +3,7 @@ import CategoryList from "./CategoryList";
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 
 const CategoryPage = props => {
+  console.log(props);
   const [categories, setCategories] = useState([]);
   const { isAuthenticated } = useSimpleAuth();
 
@@ -27,7 +28,7 @@ const CategoryPage = props => {
   return (
     <>
       <main>
-        <CategoryList categories={categories} {...props} />
+        <CategoryList {...props} categories={props.categories} />
       </main>
     </>
   );
