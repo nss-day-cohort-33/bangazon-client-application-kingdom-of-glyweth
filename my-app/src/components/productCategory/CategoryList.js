@@ -7,7 +7,7 @@ const CategoryList = props => {
     <>
       <article>
         {props.categories.map(category => (
-          <Category key={category.id} category={category} />
+          <Category key={category.id} category={category} {...props} />
         ))}
       </article>
     </>
