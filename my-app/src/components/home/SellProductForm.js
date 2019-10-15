@@ -8,7 +8,7 @@ const SellProductForm = props => {
   const description = useRef()
 
   const handlePostProduct = (e) => {
-    e.preventDefault() 
+    e.preventDefault()
 
     const newProduct = {
       "name": title.current.value,
