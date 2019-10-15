@@ -61,7 +61,6 @@ const MyProfile = props => {
     // }
 
     // console.log("customers", customers)
-    console.log("payments", payments)
     return (
         <>
         <h2>Payment Types</h2>

@@ -13,6 +13,7 @@ import HomePage from "./homePage/HomePage";
 import CategoryPage from "./productCategory/CategoryPage";
 import PaymentOptions from "./profile/PaymentOptions";
 import MyProducts from "./myProducts/MyProducts"
+// import ProductsByCategoryPage from "./productCategory/ProductsByCategoryPage"
 
 const ApplicationViews = () => {
   const [products, setProducts] = useState([]);
@@ -79,10 +80,10 @@ const ApplicationViews = () => {
         render={props => {
           if (isAuthenticated()) {
             return (
-              <ProductCategoryList
-                products={products}
-                product_categories={product_categories}
-                {...props}
+              <ProductsByCategoryPage
+              {...props}
+              categories={product_categories}
+              products={products}
               />
             )
           } else {
