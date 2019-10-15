@@ -143,7 +143,6 @@ const ApplicationViews = () => {
           if (isAuthenticated()) {
             return (
               <MyProducts
-                getProducts={getProducts}
                 {...props}
               />
             )

@@ -15,7 +15,6 @@ const Category = props => {
   };
 
   useEffect(getProducts, []);
-  console.log(products);
 
   return (
     <>
