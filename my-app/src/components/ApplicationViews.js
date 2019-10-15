@@ -10,10 +10,10 @@ import useSimpleAuth from "../hooks/ui/useSimpleAuth";
 import SellProductForm from "./home/SellProductForm";
 import HomePage from "./homePage/HomePage";
 // import CategoryPage from "./productCategory/CategoryPage";
-import ProductCategory from "./productCategory/ProductCategory";
-import ProdCatList from "./productCategory/ProdCatList";
-import isAuthenticated from "../hooks/ui/useSimpleAuth";
-import ProductCategories from "./productCategory/ProductCategories";
+// import ProductCategory from "./productCategory/ProductCategory";
+// import ProdCatList from "./productCategory/ProdCatList";
+// import isAuthenticated from "../hooks/ui/useSimpleAuth";
+// import ProductCategories from "./productCategory/ProductCategories";
 import CategoryPage from "./productCategory/CategoryPage";
 
 const ApplicationViews = () => {
@@ -123,21 +123,29 @@ const ApplicationViews = () => {
           return <CategoryPage {...props} />;
         }}
       />
+
       {/* <Route
         exact
-        path="/product_category"
+        path="/types"
         render={props => {
-          console.log(product_categories);
-          let category = product_categories.find(
+          console.log("types cats", categories);
+          return <ProductCategories {...props} categories={categories} />;
+        }}
+      />
+
+      <Route
+        exact
+        path="/types/:categoryId(\d+)"
+        render={props => {
+          console.log("params", props.match.params.categoryId, categories);
+          let category = categories.find(
             category => category.id === +props.match.params.categoryId
           );
           console.log(category);
           if (!category) {
             category = { id: 404, name: "Category Not Found." };
           }
-          return (
-            <CategoryPage {...props} products={products} category={category} />
-          );
+          return <ProductCategoryList {...props} category={category} />;
         }}
       /> */}
     </React.Fragment>

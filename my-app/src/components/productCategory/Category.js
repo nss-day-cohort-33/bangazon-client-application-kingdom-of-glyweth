@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
-import Product from "../product/Product"
+import Product from "../product/Product";
 
 const Category = props => {
   const [products, setProducts] = useState([]);
 
   const getProducts = () => {
     fetch(
-      `http://localhost:8000/products?product_category="http://127.0.0.1:8000/product_category/${props.category.id}`,
+      `http://localhost:8000/products?product_category_id=${props.category.id}`,
       {
         method: "GET"
       }
@@ -18,23 +18,8 @@ const Category = props => {
   };
 
   useEffect(getProducts, []);
-  // return (
-  //   <>
-  //     <section>
-  //       <ul>
-  //         <li>
-  //           <Link to={"/products_by_category"}>
-  //             {props.category.name} {products.length}
-  //           </Link>
+  console.log(products);
 
-  //           <ul>
-
-  //           </ul>
-  //         </li>
-  //       </ul>
-  //     </section>
-  //   </>
-  // );
   return (
     <>
       {products.length > 0 ? (
