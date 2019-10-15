@@ -11,7 +11,6 @@ const AddPaymentForm = props => {
     // const currentDate = moment().format("YYYY/MM/DD");
     // const expiration = new Date(expiration_date.current.value)
     const today = new Date().setHours(0,0,0,0)
-    console.log("customer", props.customers[0])
 
 
     const addPayment = () => {
