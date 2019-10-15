@@ -119,6 +119,7 @@ const ApplicationViews = () => {
               <SellProductForm
                 product_categories={product_categories}
                 addProduct={addProduct}
+                getProducts={getProducts}
                 {...props}
               />
             );
