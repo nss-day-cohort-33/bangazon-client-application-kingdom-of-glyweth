@@ -22,7 +22,7 @@ const Category = props => {
         <article className="categoryList">
           <Link
             className="nav-link"
-            to={"/products_by_cagetory"}
+            to={`/product_by_cagetory/${props.category.id}`}
           >
             <h3>
               {props.category.name}({products.length})
