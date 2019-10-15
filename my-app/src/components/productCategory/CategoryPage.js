@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CategoryList from "./CategoryList";
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
-import ProdCatList from "./ProdCatList";
 
 const CategoryPage = props => {
   console.log(props);
@@ -29,7 +28,7 @@ const CategoryPage = props => {
   return (
     <>
       <main>
-        <CategoryList {...props} categories={categories} />
+        <CategoryList {...props} categories={props.categories} />
       </main>
     </>
   );

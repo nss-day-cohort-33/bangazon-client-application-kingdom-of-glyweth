@@ -7,12 +7,9 @@ const Category = props => {
   const [products, setProducts] = useState([]);
 
   const getProducts = () => {
-    fetch(
-      `http://localhost:8000/products?product_category_id=${props.category.id}`,
-      {
-        method: "GET"
-      }
-    )
+    fetch(`http://localhost:8000/products?category=${props.category.id}`, {
+      method: "GET"
+    })
       .then(response => response.json())
       .then(setProducts);
   };
@@ -33,9 +30,12 @@ const Category = props => {
             </h3>
           </Link>
           <div className={`productDiv category-${props.category.id}`}>
-            {products.map(product => (
-              <Product key={product.id} product={product} />
-            ))}
+            {products
+              .reverse()
+              .slice(0, 3)
+              .map(product => (
+                <Product key={product.id} product={product} />
+              ))}
           </div>
         </article>
       ) : (
