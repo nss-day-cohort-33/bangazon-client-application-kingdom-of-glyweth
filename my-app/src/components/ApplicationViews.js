@@ -14,10 +14,10 @@ import ProductCategoryList from "./productCategory/ProductCategoryList";
 import PaymentOptions from "./profile/PaymentOptions";
 
 const ApplicationViews = () => {
-  const [products, setProducts] = useState([]);
-  const [product_categories, setProductCategories] = useState([]);
-  const [customers, setCustomers] = useState([]);
-  const { isAuthenticated } = useSimpleAuth();
+  const [products, setProducts] = useState([])
+  const [product_categories, setProductCategories] = useState([])
+  const [customers, setCustomers] = useState([])
+  const { isAuthenticated } = useSimpleAuth()
 
   const getProducts = () => {
     APImanager.getAllUnauthorized("products").then(setProducts);
@@ -26,21 +26,21 @@ const ApplicationViews = () => {
     APImanager.getAllUnauthorized("product_category").then(setProductCategories);
   };
   const getCustomers = () => {
-    APImanager.getAll("customer").then(setCustomers);
-  };
+    APImanager.getAll("customer").then(setCustomers)
+  }
   //     useEffect(() => {
   //     APImanager.getAll("product_category")
   //     .then(setProductCategories)
   //   }
   const addProduct = newProduct => {
-    return APImanager.post("products", newProduct);
-  };
+    return APImanager.post("products", newProduct)
+  }
 
   useEffect(() => {
-    getProducts();
-    getProductCategories();
-    getCustomers();
-  }, []);
+    getProducts()
+    getProductCategories()
+    getCustomers()
+  }, [])
 
   return (
     <React.Fragment>
@@ -48,13 +48,13 @@ const ApplicationViews = () => {
         exact
         path="/"
         render={props => {
-          return <HomePage products={products} {...props} />;
+          return <HomePage products={products} {...props} />
         }}
       />
       <Route
         path="/login"
         render={props => {
-          return <Login {...props} />;
+          return <Login {...props} />
         }}
       />
 
@@ -62,7 +62,14 @@ const ApplicationViews = () => {
         exact
         path="/product_category"
         render={props => {
-          return <CategoryPage {...props} />;
+          if (isAuthenticated()) {
+            return (
+              <CategoryPage {...props}
+              />
+            )
+          } else {
+            return <Login {...props} />
+          }
         }}
       />
 
@@ -70,42 +77,44 @@ const ApplicationViews = () => {
         exact
         path="/products_by_category"
         render={props => {
-          return (
-            <ProductCategoryList
-              products={products}
-              product_categories={product_categories}
-              {...props}
-            />
-          );
+          if (isAuthenticated()) {
+            return (
+              <ProductCategoryList
+                products={products}
+                product_categories={product_categories}
+                {...props}
+              />
+            )
+          } else {
+            return <Login {...props} />
+          }
         }}
       />
 
       <Route
         path="/register"
         render={props => {
-          return <Register {...props} />;
+          return <Register {...props} />
         }}
       />
 
       <Route
         path="/myprofile"
         render={props => {
-          return <MyProfile customers={customers} {...props} />;
+          return <MyProfile customers={customers} {...props} />
         }}
       />
       <Route
         path="/paymentform"
         render={props => {
-          return <AddPaymentForm customers={customers} {...props} />;
+          return <AddPaymentForm customers={customers} {...props} />
         }}
       />
       <Route
         path="/paymentoptions"
         render={props => {
           if (isAuthenticated()) {
-            return (
-              <PaymentOptions {...props} />
-            )
+            return <PaymentOptions {...props} />
           } else {
             return <Redirect to="/login" />
           }
@@ -122,9 +131,9 @@ const ApplicationViews = () => {
                 getProducts={getProducts}
                 {...props}
               />
-            );
+            )
           } else {
-            return <Login {...props} />;
+            return <Login {...props} />
           }
         }}
       />
@@ -134,20 +143,20 @@ const ApplicationViews = () => {
         render={props => {
           let product = products.find(
             each => each.id === parseInt(props.match.params.each)
-          );
+          )
           if (!product) {
-            product = { id: 404, name: "404" };
+            product = { id: 404, name: "404" }
           }
           return (
             <Product
               product={product}
               product_categories={product_categories}
             />
-          );
+          )
         }}
       />
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default withRouter(ApplicationViews);
+export default withRouter(ApplicationViews)
