@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 import { Link } from "react-router-dom"
-import { statement } from "@babel/template"
 
 
 //  Given the user is authenticated
@@ -29,7 +28,7 @@ const MyProfile = props => {
 
     const getPayment = () => {
         if (isAuthenticated()) {
-            fetch(`http://localhost:8000/payment`, {
+            fetch(`http://localhost:8000/payment?customer=current`, {
                 "method": "GET",
                 "headers": {
                     "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
@@ -42,24 +41,24 @@ const MyProfile = props => {
 
     useEffect(getPayment, [])
 
-    const handleDeleteButton = (id) => {
-        const confirm = window.confirm("Are you sure you wish to remove this?")
-        if(confirm === true){
-            console.log(id)
-            fetch(`http://localhost:8000/payments/${id}`, {
-                "method": "Delete",
-                "headers": {
-                    "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
-                }
-            })
-            .then(() => {
-                getPayment()
-            })
+    // const handleDeleteButton = (id) => {
+    //     const confirm = window.confirm("Are you sure you wish to remove this?")
+    //     if(confirm === true){
+    //         console.log(id)
+    //         fetch(`http://localhost:8000/payments/${id}`, {
+    //             "method": "Delete",
+    //             "headers": {
+    //                 "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+    //             }
+    //         })
+    //         .then(() => {
+    //             getPayment()
+    //         })
 
-            } else {
-            console.log("false works")
-        }
-    }
+    //         } else {
+    //         console.log("false works")
+    //     }
+    // }
 
     // console.log("customers", customers)
     console.log("payments", payments)
@@ -67,6 +66,8 @@ const MyProfile = props => {
         <>
         <h2>Payment Types</h2>
         <Link to="/paymentform">Add New Payment</Link>
+        <br></br>
+        <Link to="/paymentoptions">Delete Payment</Link>
         <ul>
         {
             payments.map((payment) => {
@@ -76,9 +77,6 @@ const MyProfile = props => {
                     <strong>Card Number:</strong> {payment.account_number}
                     <br></br>
                     <strong>Expiration Date:</strong> {payment.expiration_date}
-                    <br></br>
-                    <button onClick={() => handleDeleteButton(payment.id)} >Delete Payment Option</button>
-                    <br></br>
                     <br></br>
                 </li>
             })
