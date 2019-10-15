@@ -19,19 +19,18 @@ const SellProductForm = props => {
       "description": description.current.value
       }
       if(newProduct.product_category_id === "nope"){
-        console.log(newProduct)
         window.alert("Please Choose A Category!")
       }
       else{
-        console.log(newProduct)
         props.addProduct(newProduct)
         .then(() => {
+          props.getProducts()
+        }).then(()=>
           props.history.push({
               pathname: "/"
-          })
-        })
+          }))
+        }
       }
-    }
 
   return (
     <>
