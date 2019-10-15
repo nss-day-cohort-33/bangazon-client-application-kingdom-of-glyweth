@@ -12,7 +12,7 @@ const PaymentOptions = props => {
 
     const getPayment = () => {
         if (isAuthenticated()) {
-            fetch(`http://localhost:8000/payment?customer=${localStorage.getItem("id")}`, {
+            fetch(`http://localhost:8000/payment?customer=current`, {
                 "method": "GET",
                 "headers": {
                     "Authorization": `Token ${localStorage.getItem("bangazon_token")}`

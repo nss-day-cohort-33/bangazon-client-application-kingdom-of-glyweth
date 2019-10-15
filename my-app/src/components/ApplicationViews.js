@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react"
-import { withRouter, Route, Redirect } from "react-router-dom"
-import Login from "./auth/Login"
-import Register from "./auth/Register"
-import MyProfile from "./profile/MyProfile"
-import AddPaymentForm from "./profile/AddPayment"
-import Product from "./product/ProductDetail"
-import APImanager from "../modules/APImanager"
-import useSimpleAuth from "../hooks/ui/useSimpleAuth"
-import SellProductForm from "./home/SellProductForm"
-import HomePage from "./homePage/HomePage"
-import CategoryPage from "./productCategory/CategoryPage"
-import ProductCategoryList from "./productCategory/ProductCategoryList"
-import PaymentOptions from "./profile/PaymentOptions"
-import isAuthenticated from "../hooks/ui/useSimpleAuth"
+import React, { useEffect, useState } from "react";
+import { withRouter, Route, Redirect } from "react-router-dom";
+import Login from "./auth/Login";
+import Register from "./auth/Register";
+import MyProfile from "./profile/MyProfile";
+import AddPaymentForm from "./profile/AddPayment";
+import Product from "./product/ProductDetail";
+import APImanager from "../modules/APImanager";
+import useSimpleAuth from "../hooks/ui/useSimpleAuth";
+import SellProductForm from "./home/SellProductForm";
+import HomePage from "./homePage/HomePage";
+import CategoryPage from "./productCategory/CategoryPage";
+import ProductCategoryList from "./productCategory/ProductCategoryList";
+import PaymentOptions from "./profile/PaymentOptions";
 
 const ApplicationViews = () => {
   const [products, setProducts] = useState([])
@@ -21,12 +20,11 @@ const ApplicationViews = () => {
   const { isAuthenticated } = useSimpleAuth()
 
   const getProducts = () => {
-    APImanager.getAll("products").then(setProducts)
-  }
+    APImanager.getAllUnauthorized("products").then(setProducts);
+  };
   const getProductCategories = () => {
-    APImanager.getAll("product_category").then(setProductCategories)
-  }
-
+    APImanager.getAllUnauthorized("product_category").then(setProductCategories);
+  };
   const getCustomers = () => {
     APImanager.getAll("customer").then(setCustomers)
   }
