@@ -12,6 +12,7 @@ import HomePage from "./homePage/HomePage";
 import CategoryPage from "./productCategory/CategoryPage";
 import ProductCategoryList from "./productCategory/ProductCategoryList";
 import PaymentOptions from "./profile/PaymentOptions";
+import MyProducts from "./myProducts/MyProducts"
 
 const ApplicationViews = () => {
   const [products, setProducts] = useState([])
@@ -128,6 +129,22 @@ const ApplicationViews = () => {
               <SellProductForm
                 product_categories={product_categories}
                 addProduct={addProduct}
+                getProducts={getProducts}
+                {...props}
+              />
+            )
+          } else {
+            return <Login {...props} />
+          }
+        }}
+      />
+      <Route
+        path="/myproducts"
+        render={props => {
+          if (isAuthenticated()) {
+            return (
+              <MyProducts
+                getProducts={getProducts}
                 {...props}
               />
             )
