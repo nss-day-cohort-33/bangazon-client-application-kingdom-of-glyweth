@@ -142,7 +142,7 @@ const ApplicationViews = () => {
         render={props => {
           if (isAuthenticated()) {
             return (
-              <MyProducts
+              <MyProducts getProducts={getProducts}
                 {...props}
               />
             )

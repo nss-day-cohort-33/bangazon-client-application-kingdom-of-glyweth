@@ -26,7 +26,7 @@ const MyProducts = props => {
     <main style={{ textalign: "center", width: 700 }} >
       <h1>My Products</h1>
 
-      <ProductList products={products} thismodule={thismodule} {...props} />
+      <ProductList products={products} thismodule={thismodule} getUserProducts={getUserProducts} {...props} />
 
     </main>
     </>

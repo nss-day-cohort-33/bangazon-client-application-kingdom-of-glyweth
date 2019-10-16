@@ -2,7 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
 
+/* SN- Added the ability to use this component for the homepage list as well as the my product list. Delete button below dynamically renders based on the thismodule prop being passed down from myproducts component. That delete button can be clicked to soft delete the product*/
+
 const Product = props => {
+
+  const deleteProduct = () => {
+    fetch(`http://localhost:8000/products/${props.product.id}`, {
+        "method": "DELETE",
+        "headers": {
+            "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+        }
+    }).then(() => {
+      props.getUserProducts()
+    })
+  }
   
   return (
     <>
@@ -17,7 +30,7 @@ const Product = props => {
           <li>{props.product.description}</li>
         </ul>
         {props.thismodule === "myProducts" &&
-        <button className={`btn btn-primary product-delete-${props.product.id}`}>Delete</button>
+        <button onClick={deleteProduct} className={`btn btn-primary product-delete-${props.product.id}`}>Delete</button>
         }
       </section>
     </>
