@@ -1,6 +1,8 @@
-import React from "react"
+import React, {useState} from "react"
 import APImanager from "../../modules/APImanager"
+
 const Product = props => {
+    const[confirmation, setConfirmation] = useState("")
   // make new order for customer
 //   const makeNewOrder = props => {
 //     return fetch("http://localhost:8000/order", {
@@ -24,6 +26,12 @@ const Product = props => {
 
   const addProduct = id => {
     APImanager.post("order",{"product_id":id})
+    .then(()=> {
+        setConfirmation("Product added to cart!")
+        setTimeout(() => {
+            setConfirmation("")
+        }, 2000);
+    })
  }
   return (
     <>
@@ -35,6 +43,7 @@ const Product = props => {
         <button onClick={() => addProduct(props.product.id)}>
           Add to Order
         </button>
+        <h4 className="orderConfirmation">{confirmation}</h4>
       </section>
     </>
   )
