@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
-import Product from "../product/Product";
 
 const ProductByCategory = props => {
   return (
