@@ -13,6 +13,7 @@ import HomePage from "./homePage/HomePage";
 import CategoryPage from "./productCategory/CategoryPage";
 import PaymentOptions from "./profile/PaymentOptions";
 import MyProducts from "./myProducts/MyProducts";
+import Cart from "./cart/Cart"
 import ProductByCategoryList from "./productCategory/ProductByCategoryList";
 
 const ApplicationViews = () => {
@@ -81,6 +82,12 @@ const ApplicationViews = () => {
         }}
       />
 
+      <Route
+        path="/cart"
+        render={props => {
+          return <Cart {...props} />;
+        }}
+      />
       <Route
         path="/myprofile"
         render={props => {
