@@ -10,7 +10,7 @@ const ProductList = props => {
           .reverse()
           .slice(0, 20)
           .map(product => (
-            <Product key={product.id} product={product} />
+            <Product key={product.id} thismodule={props.thismodule} product={product} />
           ))}
       </article>
     </>
