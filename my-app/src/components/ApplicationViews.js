@@ -13,7 +13,7 @@ import HomePage from "./homePage/HomePage";
 import CategoryPage from "./productCategory/CategoryPage";
 import PaymentOptions from "./profile/PaymentOptions";
 import MyProducts from "./myProducts/MyProducts";
-import ProductByCategoryList from "./productCategory/ProductByCategoryList"
+import ProductByCategoryList from "./productCategory/ProductByCategoryList";
 
 const ApplicationViews = () => {
   const [products, setProducts] = useState([]);
@@ -152,11 +152,9 @@ const ApplicationViews = () => {
         exact
         path="/product_by_category/:categoryId(\d+)"
         render={props => {
-          console.log("params", props.match.params.categoryId, product_categories);
           let category = product_categories.find(
             category => category.id === Number(props.match.params.categoryId)
           );
-          console.log(category);
           if (!category) {
             category = { id: 404, name: "Category Not Found." };
           }
