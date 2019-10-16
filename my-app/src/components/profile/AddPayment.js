@@ -29,7 +29,6 @@ const AddPaymentForm = props => {
         })
         .then(response => response.json())
         .then(() => {
-            console.log("Added")
             props.history.push("/myprofile")
             }
         )
@@ -38,9 +37,6 @@ const AddPaymentForm = props => {
 
     const submitPayment = (e) => {
         e.preventDefault()
-        console.log(new Date(expiration_date.current.value))
-        console.log("today", today)
-        // console.log(Date.parse(new Date.expiration_date.current.value))
 
         if(new Date(expiration_date.current.value) <= today) {
             alert("Please provide a card with a date in the future")
