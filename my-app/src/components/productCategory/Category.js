@@ -15,7 +15,6 @@ const Category = props => {
   };
 
   useEffect(getProducts, []);
-  console.log(products);
 
   return (
     <>
@@ -23,7 +22,7 @@ const Category = props => {
         <article className="categoryList">
           <Link
             className="nav-link"
-            to={`/product_category/${props.category.id}`}
+            to={`/product_by_category/${props.category.id}`}
           >
             <h3>
               {props.category.name}({products.length})

@@ -12,7 +12,8 @@ import HomePage from "./homePage/HomePage";
 // import isAuthenticated from "../hooks/ui/useSimpleAuth";
 import CategoryPage from "./productCategory/CategoryPage";
 import PaymentOptions from "./profile/PaymentOptions";
-import MyProducts from "./myProducts/MyProducts"
+import MyProducts from "./myProducts/MyProducts";
+import ProductByCategoryList from "./productCategory/ProductByCategoryList";
 
 const ApplicationViews = () => {
   const [products, setProducts] = useState([]);
@@ -73,24 +74,6 @@ const ApplicationViews = () => {
         }}
       />
 
-      {/* <Route
-        exact
-        path="/products_by_category"
-        render={props => {
-          if (isAuthenticated()) {
-            return (
-              <ProductCategoryList
-                products={products}
-                product_categories={product_categories}
-                {...props}
-              />
-            )
-          } else {
-            return <Login {...props} />
-          }
-        }}
-      /> */}
-
       <Route
         path="/register"
         render={props => {
@@ -147,7 +130,7 @@ const ApplicationViews = () => {
               />
             )
           } else {
-            return <Login {...props} />
+            return <Login {...props} />;
           }
         }}
       />
@@ -167,6 +150,19 @@ const ApplicationViews = () => {
               product_categories={product_categories}
             />
           );
+        }}
+      />
+      <Route
+        exact
+        path="/product_by_category/:categoryId(\d+)"
+        render={props => {
+          let category = product_categories.find(
+            category => category.id === Number(props.match.params.categoryId)
+          );
+          if (!category) {
+            category = { id: 404, name: "Category Not Found." };
+          }
+          return <ProductByCategoryList {...props} category={category} />;
         }}
       />
     </React.Fragment>
