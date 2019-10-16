@@ -5,6 +5,7 @@ import ProductList from "../product/ProductList"
 
 const MyProducts = props => {
     const [products, setProducts] = useState([]);
+    const thismodule = "myProducts"
 
     const getUserProducts = () => {
         fetch('http://localhost:8000/products?user=current', {
@@ -25,7 +26,7 @@ const MyProducts = props => {
     <main style={{ textalign: "center", width: 700 }} >
       <h1>My Products</h1>
 
-      <ProductList products={products} {...props} />
+      <ProductList products={products} thismodule={thismodule} getUserProducts={getUserProducts} {...props} />
 
     </main>
     </>

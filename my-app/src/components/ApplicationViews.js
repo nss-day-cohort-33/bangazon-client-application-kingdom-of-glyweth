@@ -124,7 +124,11 @@ const ApplicationViews = () => {
         path="/myproducts"
         render={props => {
           if (isAuthenticated()) {
-            return <MyProducts getProducts={getProducts} {...props} />;
+            return (
+              <MyProducts getProducts={getProducts}
+                {...props}
+              />
+            )
           } else {
             return <Login {...props} />;
           }
