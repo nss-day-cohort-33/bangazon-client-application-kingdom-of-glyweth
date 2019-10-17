@@ -32,10 +32,19 @@ const Cart = () => {
     }
     const handlePayment = (id) => {
         const newPayment = {
-            "order_id": id,
             "payment_id": +paymentType.current.firstChild.id
         }
-        console.log("payment id", newPayment )
+        console.log("added payment", newPayment )
+        if (isAuthenticated()) {
+            fetch(`http://localhost:8000/order/${id}`, {
+                "method": "PUT",
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+                },
+                body: JSON.stringify(newPayment)
+            })
+        }
     }
 
     useEffect(() => {
