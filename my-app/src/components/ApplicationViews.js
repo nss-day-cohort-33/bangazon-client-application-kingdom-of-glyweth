@@ -8,13 +8,13 @@ import Product from "./product/ProductDetail";
 import APImanager from "../modules/APImanager";
 import useSimpleAuth from "../hooks/ui/useSimpleAuth";
 import SellProductForm from "./home/SellProductForm";
-import HomePage from "./homePage/HomePage";
 // import isAuthenticated from "../hooks/ui/useSimpleAuth";
-import CategoryPage from "./productCategory/CategoryPage";
 import PaymentOptions from "./profile/PaymentOptions";
 import MyProducts from "./myProducts/MyProducts";
 import Cart from "./cart/Cart"
 import ProductByCategoryList from "./productCategory/ProductByCategoryList";
+import CategoryList from "./productCategory/CategoryList"
+import ProductList from "./product/ProductList";
 
 const ApplicationViews = () => {
   const [products, setProducts] = useState([]);
@@ -61,7 +61,7 @@ const ApplicationViews = () => {
         exact
         path="/"
         render={props => {
-          return <HomePage products={products} {...props} />;
+          return <ProductList products={products} {...props} />;
         }}
       />
       <Route
@@ -76,7 +76,7 @@ const ApplicationViews = () => {
         path="/product_category"
         render={props => {
           if (isAuthenticated()) {
-            return <CategoryPage {...props} categories={product_categories} />;
+            return <CategoryList {...props} categories={product_categories} />;
           } else {
             return <Login {...props} />;
           }
