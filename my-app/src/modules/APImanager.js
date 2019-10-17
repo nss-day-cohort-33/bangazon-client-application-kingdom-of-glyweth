@@ -52,13 +52,11 @@ export default {
         }).then(data => data.json())
     },
     delete(resource) {
-        // if (isAuthenticated()) {
         return fetch(`${remoteURL}/${resource}/${resource.id}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Token ${localStorage.getItem("bangazon_token")}`
             }
         })
-        // }
     }
 }
