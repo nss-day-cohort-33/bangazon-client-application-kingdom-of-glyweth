@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
-import { Item } from "semantic-ui-react"
 
 const Cart = () => {
     const [orders, setOrders] = useState([])
@@ -78,28 +77,6 @@ const Cart = () => {
 
     return (
         <>
-            {/* <h1>HEY THIS IS CART</h1>
-            {orders.map(order => {
-                return (
-                    <div>
-                        <li key={order.id}>{order.id}</li>
-                        <button onClick={() => handlePayment(order.id)}>
-                            Ready to Checkout
-                        </button>
-                    </div>
-                )
-            })}
-            <select ref={paymentType}>
-                {payments.map(payment => {
-                    return (
-                        <option id={payment.id} key={payment.id}>
-                            {payment.merchant_name.toUpperCase()} ....{" "}
-                            {payment.account_number.slice(-4)}
-                        </option>
-                    )
-                })}
-            </select> */}
-
             <h1>My Cart:</h1>
             {orders.map(order => {
                 return (
@@ -123,7 +100,6 @@ const Cart = () => {
                                                 {item.price}
                                             </div>
                                             <br></br>
-                                            {/* <p class="card-text">{item.description}</p> */}
                                             <button
                                                 class="btn btn-danger"
                                                 onClick={() =>
