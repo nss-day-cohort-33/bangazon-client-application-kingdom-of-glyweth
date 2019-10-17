@@ -78,7 +78,7 @@ const Cart = () => {
 
     return (
         <>
-            <h1>HEY THIS IS CART</h1>
+            {/* <h1>HEY THIS IS CART</h1>
             {orders.map(order => {
                 return (
                     <div>
@@ -98,10 +98,11 @@ const Cart = () => {
                         </option>
                     )
                 })}
-            </select>
+            </select> */}
+
             <h1>My Cart:</h1>
-            {orders.map(item => {
-                return item.line_items.map(item => {
+            {orders.map(order => {
+                return order.line_items.map(item => {
                     return (
                         <div>
                             <div
@@ -136,11 +137,32 @@ const Cart = () => {
                                     </div>
                                 </div>
                             </div>
+                            <div>
+                                <select ref={paymentType}>
+                                    {payments.map(payment => {
+                                        return (
+                                            <option
+                                                id={payment.id}
+                                                key={payment.id}
+                                            >
+                                                {payment.merchant_name.toUpperCase()}{" "}
+                                                ....{" "}
+                                                {payment.account_number.slice(
+                                                    -4
+                                                )}
+                                            </option>
+                                        )
+                                    })}
+                                </select>
+                                {/* <p key={order.id}>{order.id}</p> */}
+                                <button onClick={() => handlePayment(order.id)}>
+                                    Ready to Checkout
+                                </button>
+                            </div>
                         </div>
                     )
                 })
             })}
-            ;
         </>
     )
 }
