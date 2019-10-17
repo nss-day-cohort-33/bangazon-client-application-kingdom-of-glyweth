@@ -8,7 +8,7 @@ import Product from "./product/ProductDetail";
 import APImanager from "../modules/APImanager";
 import useSimpleAuth from "../hooks/ui/useSimpleAuth";
 import SellProductForm from "./home/SellProductForm";
-import HomePage from "./homePage/HomePage";
+import ProductList from "./product/ProductList"
 // import isAuthenticated from "../hooks/ui/useSimpleAuth";
 import CategoryPage from "./productCategory/CategoryPage";
 import PaymentOptions from "./profile/PaymentOptions";
