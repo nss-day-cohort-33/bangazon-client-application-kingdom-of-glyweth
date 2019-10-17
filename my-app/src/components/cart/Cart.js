@@ -102,66 +102,64 @@ const Cart = () => {
 
             <h1>My Cart:</h1>
             {orders.map(order => {
-                return order.line_items.map(item => {
-                    return (
-                        <div>
-                            <div
-                                class="card"
-                                style={{ margin: "2em", width: "22rem" }}
-                            >
-                                <div class="card-body">
-                                    <h2 class="card-name">
-                                        <strong>{item.name}</strong>
-                                    </h2>
-                                    <div class="card-text">
-                                        <strong>Price:</strong>
-                                        {item.price}
-                                    </div>
-                                    <br></br>
-                                    <p class="card-text">{item.description}</p>
+                return (
+                    <>
+                        {order.line_items.map(item => {
+                            return (
+                                <div>
                                     <div
+                                        class="card"
                                         style={{
-                                            margin: "1em .5em 0 .5em",
-                                            display: "flex",
-                                            justifyContent: "space-between"
+                                            margin: "2em",
+                                            width: "22rem"
                                         }}
                                     >
-                                        <button
-                                            class="btn btn-danger"
-                                            onClick={() =>
-                                                deleteProductFromCart(item.id)
-                                            }
-                                        >
-                                            Remove
-                                        </button>
+                                        <div class="card-body">
+                                            <h2 class="card-name">
+                                                <strong>{item.name}</strong>
+                                            </h2>
+                                            <div class="card-text">
+                                                <strong>Price:</strong>
+                                                {item.price}
+                                            </div>
+                                            <br></br>
+                                            {/* <p class="card-text">{item.description}</p> */}
+                                            <button
+                                                class="btn btn-danger"
+                                                onClick={() =>
+                                                    deleteProductFromCart(
+                                                        item.id
+                                                    )
+                                                }
+                                            >
+                                                Remove
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div>
-                                <select ref={paymentType}>
-                                    {payments.map(payment => {
-                                        return (
-                                            <option
-                                                id={payment.id}
-                                                key={payment.id}
-                                            >
-                                                {payment.merchant_name.toUpperCase()}{" "}
-                                                ....{" "}
-                                                {payment.account_number.slice(
-                                                    -4
-                                                )}
-                                            </option>
-                                        )
-                                    })}
-                                </select>
-                                {/* <p key={order.id}>{order.id}</p> */}
-                                <button onClick={() => handlePayment(order.id)}>
-                                    Ready to Checkout
-                                </button>
-                            </div>
+                            )
+                        })}
+                        <div>
+                            <select ref={paymentType}>
+                                {payments.map(payment => {
+                                    return (
+                                        <option
+                                            id={payment.id}
+                                            key={payment.id}
+                                        >
+                                            {payment.merchant_name.toUpperCase()}{" "}
+                                            ....{" "}
+                                            {payment.account_number.slice(-4)}
+                                        </option>
+                                    )
+                                })}
+                            </select>
+                            <button onClick={() => handlePayment(order.id)}>
+                                Ready to Checkout
+                            </button>
                         </div>
-                    )
-                })
+                    </>
+                )
             })}
         </>
     )
