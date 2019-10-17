@@ -71,18 +71,28 @@ const NavBar = props => {
                         Reports
                     </Dropdown.Item>
                 </Dropdown.Menu>
-            </Dropdown>
-            {isAuthenticated() ? (
-                <Menu.Item
-                    className="nav-link fakeLink"
-                    onClick={() => {
-                        logout()
-                        props.history.push({
-                            pathname: "/"
-                        })
-                    }}
-                >
-                    Logout
+                </Dropdown>
+                {isAuthenticated() ? (
+            <Menu.Item
+              className="nav-link fakeLink"
+              onClick={() => {
+                logout();
+                props.history.push({
+                  pathname: "/"
+                });
+              }}
+            >
+              Logout
+            </Menu.Item>
+        ) : (
+          <>
+              <Menu.Item as={Link} to="/login">
+                Login
+            </Menu.Item>
+          </>
+        )}
+                <Menu.Item as={Link} to="/cart" >
+                    Cart
                 </Menu.Item>
             ) : (
                 <>
