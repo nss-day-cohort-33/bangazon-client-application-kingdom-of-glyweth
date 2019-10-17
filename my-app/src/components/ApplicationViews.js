@@ -20,6 +20,7 @@ const ApplicationViews = () => {
   const [products, setProducts] = useState([]);
   const [product_categories, setProductCategories] = useState([]);
   const [customers, setCustomers] = useState([]);
+  const [order, setOrders] = useState([]);
   const { isAuthenticated } = useSimpleAuth();
 
   const getProducts = () => {
@@ -41,10 +42,17 @@ const ApplicationViews = () => {
     return APImanager.post("products", newProduct);
   };
 
+  const getOrder = () => {
+    APImanager.getAllUnauthorized("order").then(
+      setOrders
+    );
+  };
+
   useEffect(() => {
     getProducts();
     getProductCategories();
     getCustomers();
+    getOrder();
   }, []);
 
   return (
@@ -83,9 +91,15 @@ const ApplicationViews = () => {
       />
 
       <Route
-        path="/cart"
+        exact path="/cart"
         render={props => {
-          return <Cart {...props} />;
+          if (isAuthenticated()) {
+            return (
+              <Cart {...props} />
+            )
+          } else {
+            return <Redirect to="/login" />
+          }
         }}
       />
       <Route

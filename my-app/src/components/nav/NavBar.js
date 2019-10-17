@@ -84,7 +84,7 @@ const NavBar = props => {
             </Menu.Item>
           </>
         )}
-                <Menu.Item as={Link} to="/" >
+                <Menu.Item as={Link} to="/cart" >
                     Cart
                 </Menu.Item>
         </Menu>
