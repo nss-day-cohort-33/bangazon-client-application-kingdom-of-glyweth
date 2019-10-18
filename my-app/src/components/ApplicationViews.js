@@ -8,18 +8,17 @@ import Product from "./product/ProductDetail";
 import APImanager from "../modules/APImanager";
 import useSimpleAuth from "../hooks/ui/useSimpleAuth";
 import SellProductForm from "./home/SellProductForm";
+import ProductList from "./product/ProductList"
 // import isAuthenticated from "../hooks/ui/useSimpleAuth";
 import PaymentOptions from "./profile/PaymentOptions";
 import MyProducts from "./myProducts/MyProducts";
 import Cart from "./cart/Cart"
 import ProductByCategoryList from "./productCategory/ProductByCategoryList";
 import CategoryList from "./productCategory/CategoryList"
-import ProductList from "./product/ProductList";
 
 const ApplicationViews = () => {
   const [products, setProducts] = useState([]);
   const [product_categories, setProductCategories] = useState([]);
-  const [customers, setCustomers] = useState([]);
   const [order, setOrders] = useState([]);
   const { isAuthenticated } = useSimpleAuth();
 
@@ -31,13 +30,7 @@ const ApplicationViews = () => {
       setProductCategories
     );
   };
-  const getCustomers = () => {
-    APImanager.getAll("customer").then(setCustomers);
-  };
-  //     useEffect(() => {
-  //     APImanager.getAll("product_category")
-  //     .then(setProductCategories)
-  //   }
+
   const addProduct = newProduct => {
     return APImanager.post("products", newProduct);
   };
@@ -51,7 +44,6 @@ const ApplicationViews = () => {
   useEffect(() => {
     getProducts();
     getProductCategories();
-    getCustomers();
     getOrder();
   }, []);
 
@@ -105,13 +97,13 @@ const ApplicationViews = () => {
       <Route
         path="/myprofile"
         render={props => {
-          return <MyProfile customers={customers} {...props} />;
+          return <MyProfile {...props} />;
         }}
       />
       <Route
         path="/paymentform"
         render={props => {
-          return <AddPaymentForm customers={customers} {...props} />;
+          return <AddPaymentForm {...props} />;
         }}
       />
       <Route
