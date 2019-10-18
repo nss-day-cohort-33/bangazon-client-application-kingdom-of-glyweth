@@ -9,35 +9,7 @@ import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 
 const NavBar = props => {
     const { isAuthenticated, logout } = useSimpleAuth()
-    const [order, setOrder] = useState([])
-
-    //   useEffect(() => {
-    //       if (isAuthenticated()){
-    //           getCurrentOrder();
-    //       }
-    //   }, []);
-
-    const getCurrentOrder = props => {
-        return fetch(`http://localhost:8000/orderproducts`, {
-            method: "GET",
-            headers: {
-                Accept: "application/json",
-                Authorization: `Token ${localStorage.getItem("bangazon_token")}`
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
-                const currentOrder = data.filter(
-                    filterOrder =>
-                        filterOrder.order.payment === null &&
-                        filterOrder.order.customer.url ===
-                            `http://localhost:8000/customers/${localStorage.getItem(
-                                "customer_id"
-                            )}`
-                )
-                setOrder(currentOrder)
-            })
-    }
+   
     return (
         <Menu size="large">
             <Menu.Item as={Link} to="/">
