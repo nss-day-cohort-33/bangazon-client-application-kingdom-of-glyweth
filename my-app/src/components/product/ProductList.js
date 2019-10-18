@@ -18,6 +18,7 @@ const ProductList = props => {
   };
 
   useEffect(getLast20, [])
+  console.log(products)
 
   return (
     <>

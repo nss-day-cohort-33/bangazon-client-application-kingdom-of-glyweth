@@ -8,8 +8,8 @@ const Category = props => {
 
   const getProducts = () => {
     fetch(
-      `http://localhost:8000/products?quantity=3&category=${props.category.id}`,
-      // 'http://localhost:8000/products?quantity=3',
+      `http://localhost:8000/products?category=${props.category.id}`,
+      // 'http://localhost:8000/products?quantity=3&category=${props.category.id}',
       {
         method: "GET",
         headers: {
