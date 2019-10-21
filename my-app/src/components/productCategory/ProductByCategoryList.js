@@ -5,7 +5,7 @@ const ProductByCategoryList = props => {
   const [products, setProducts] = useState([]);
 
   const getProducts = () => {
-    fetch(`http://localhost:8000/products?category=${props.category.id}`, {
+    fetch(`http://localhost:8000/products?product_category=${props.category.id}`, {
       method: "GET"
     })
       .then(response => response.json())
@@ -17,7 +17,7 @@ const ProductByCategoryList = props => {
   return (
     <>
       <article>
-        {products.reverse().map(product => (
+        {products.map(product => (
           <ProductByCategory key={product.id} product={product} />
         ))}
       </article>

@@ -45,7 +45,7 @@ const Category = props => {
             <div className="category-name">
               {/* Maps through products and get the number of products in each category */}
               <h4>
-                <Link to={`/categoryDetail/${item.id}`}>{item.name}</Link>(
+                <Link to={`/product_by_category/${item.id}`}>{item.name}</Link>(
                 {
                   item.products.map(item => {
                     return <div>{item.name}</div>;
@@ -58,7 +58,7 @@ const Category = props => {
                 let itemId = +item.url.split("s/")[1];
                 return (
                   <div className="product-name">
-                    <Link className="text-info" to={`/productDetail/${itemId}`}>
+                    <Link className="text-info" to={`/products/${itemId}`}>
                       {item.name}
                     </Link>
                   </div>
