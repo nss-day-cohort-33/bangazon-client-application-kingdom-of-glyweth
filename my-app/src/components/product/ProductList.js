@@ -8,7 +8,7 @@ const ProductList = props => {
 
   const useGetLast20 = () => {
     if (isAuthenticated()) {
-      return fetch("http://localhost:8000/products?quantity=20", {
+     fetch("http://localhost:8000/products?quantity=20", {
         method: "GET",
         headers: {
           Authorization: `Token ${localStorage.getItem("bangazon_token")}`
@@ -22,7 +22,6 @@ const ProductList = props => {
   };
 
   useEffect(useGetLast20, []);
-  // console.log(products);
 
   return (
     <>
