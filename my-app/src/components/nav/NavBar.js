@@ -1,7 +1,7 @@
-import React, { useState } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
 import "semantic-ui-css/semantic.min.css"
-import { Menu, Image, Dropdown, MenuMenu } from "semantic-ui-react"
+import { Menu, Image, Dropdown } from "semantic-ui-react"
 import logo from "../../images/B.png"
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 
@@ -34,9 +34,6 @@ const NavBar = props => {
                     </Dropdown.Item>
                     <Dropdown.Item as={Link} to="/myProducts">
                         My Products
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/">
-                        Reports
                     </Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
