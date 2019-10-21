@@ -9,17 +9,16 @@ import APImanager from "../modules/APImanager";
 import useSimpleAuth from "../hooks/ui/useSimpleAuth";
 import SellProductForm from "./home/SellProductForm";
 import ProductList from "./product/ProductList"
-// import isAuthenticated from "../hooks/ui/useSimpleAuth";
-import CategoryPage from "./productCategory/CategoryPage";
 import PaymentOptions from "./profile/PaymentOptions";
 import MyProducts from "./myProducts/MyProducts";
 import Cart from "./cart/Cart"
 import ProductByCategoryList from "./productCategory/ProductByCategoryList";
+import CategoryList from "./productCategory/CategoryList"
+import Category from "./productCategory/Category"
 
 const ApplicationViews = () => {
   const [products, setProducts] = useState([]);
   const [product_categories, setProductCategories] = useState([]);
-  const [order, setOrders] = useState([]);
   const { isAuthenticated } = useSimpleAuth();
 
   const getProducts = () => {
@@ -35,16 +34,11 @@ const ApplicationViews = () => {
     return APImanager.post("products", newProduct);
   };
 
-  const getOrder = () => {
-    APImanager.getAllUnauthorized("order").then(
-      setOrders
-    );
-  };
+  
 
   useEffect(() => {
     getProducts();
     getProductCategories();
-    getOrder();
   }, []);
 
   return (
@@ -68,7 +62,7 @@ const ApplicationViews = () => {
         path="/product_category"
         render={props => {
           if (isAuthenticated()) {
-            return <CategoryPage {...props} categories={product_categories} />;
+            return <Category {...props} categories={product_categories} />;
           } else {
             return <Login {...props} />;
           }
