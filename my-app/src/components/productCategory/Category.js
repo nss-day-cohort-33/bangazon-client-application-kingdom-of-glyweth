@@ -8,9 +8,9 @@ const Category = props => {
 
   const getProducts = () => {
     fetch(
-      `http://localhost:8000/products?category=${props.category.id}`,
-      // `http://localhost:8000/products?quantity=3&category=${props.category.id}`,
-      `http://localhost:8000/products?quantity=3`,
+      // `http://localhost:8000/products?category=${props.category.id}`,
+      'http://localhost:8000/product_category?limit',
+      // 'http://localhost:8000/products?quantity=3',
 
       {
         method: "GET",
@@ -41,8 +41,6 @@ const Category = props => {
           </Link>
           <div className={`productDiv category-${props.category.id}`}>
             {products
-              .reverse()
-              .slice(0, 3)
               .map(product => (
                 <Product key={product.id} product={product} />
               ))}
