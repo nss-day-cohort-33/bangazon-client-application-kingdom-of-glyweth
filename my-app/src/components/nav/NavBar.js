@@ -29,9 +29,6 @@ const NavBar = props => {
                     <Dropdown.Item as={Link} to="/myprofile">
                         Profile
                     </Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/">
-                        My Orders
-                    </Dropdown.Item>
                     <Dropdown.Item as={Link} to="/myProducts">
                         My Products
                     </Dropdown.Item>
